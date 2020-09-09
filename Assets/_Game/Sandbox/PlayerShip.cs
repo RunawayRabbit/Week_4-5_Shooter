@@ -25,14 +25,14 @@ public class PlayerShip : MonoBehaviour
 
         if (_arena.currentMode == Arena.Mode.Horizontal)
         {
-            transform.position = target.transform.position - Vector3.back * _distanceFromTarget;
-            transform.rotation = Quaternion.identity;
+            transform.localPosition = target.transform.localPosition - Vector3.back * _distanceFromTarget;
+            transform.localRotation = Quaternion.identity;
         }
         else
         {
             Quaternion look = Quaternion.LookRotation(
-                targetTransform.position - transform.position, Vector3.up);
-            transform.rotation = look;
+                targetTransform.localPosition - transform.localPosition, Vector3.up);
+            transform.localRotation = look;
 
         }
 
