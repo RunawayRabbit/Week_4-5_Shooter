@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerShip : MonoBehaviour
 {
     [SerializeField] GameObject target = default;
@@ -26,7 +25,7 @@ public class PlayerShip : MonoBehaviour
         Quaternion look = Quaternion.LookRotation(
             targetTransform.localPosition - currentTransform.localPosition, Vector3.up);
 
-        var desiredPosition = target.transform.localPosition - Vector3.back * _distanceFromTarget;
+        var desiredPosition = target.transform.localPosition + Vector3.back * _distanceFromTarget;
 
         float smoothTime = _arena.CurrentMode == Arena.Mode.Horizontal ? 0.01f : 0.6f;
         
