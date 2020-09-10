@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 6
-  accelerationRate: 15
+  accelerationRate: 19
 --- !u!23 &168575060
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -521,7 +521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 168575057}
   _distanceFromTarget: 4
-  _moveSpeed: 10
+  _moveSpeed: 12
+  overShoulderLag: 0.27
 --- !u!1 &1529630130
 GameObject:
   m_ObjectHideFlags: 0
