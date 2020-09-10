@@ -5,10 +5,14 @@ public class FollowCam : MonoBehaviour
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject targetReticle;
     [SerializeField] private GameObject arena;
-    [SerializeField] private Vector3 cameraDisplacement;
+    
+    [SerializeField] private Vector3 displacement = default;
+    [SerializeField] private float rotateSpeed = 3.0f;
+    [SerializeField] private float smoothTime = 0.1f;
     
     private Arena _arena;
-    
+    private Vector3 _velocity;
+
     private void Awake()
     {
         Debug.Assert(playerShip, $"{gameObject.name} has no reference to the player ship!");
@@ -20,10 +24,14 @@ public class FollowCam : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(targetReticle.transform);
-        transform.position = playerShip.transform.position + cameraDisplacement;
+        var currentPosition = transform.position;
+        Vector3 newPosition = playerShip.transform.position + displacement;
 
-        //Move towards that transform.
-
+        newPosition = Vector3.SmoothDamp(currentPosition, newPosition, ref _velocity, smoothTime);
+        transform.position = newPosition;
+        
+        Quaternion newRotation = Quaternion.LookRotation(targetReticle.transform.position - currentPosition);
+        Quaternion.RotateTowards(transform.rotation, newRotation, rotateSpeed);
+        transform.rotation = newRotation;
     }
 }

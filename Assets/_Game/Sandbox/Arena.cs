@@ -18,7 +18,7 @@ public class Arena : MonoBehaviour
     //@NOTE: This code requires that our arenas always be axis-aligned vertical and horizontal.
     public static Vector3 BasisX = Vector3.right;
     public Vector3 BasisY => (CurrentMode == Mode.Horizontal) ? Vector3.forward : Vector3.up;
-    private Vector3 CurrentNormal => (CurrentMode == Mode.Horizontal) ? Vector3.up : Vector3.back;
+    public Vector3 CurrentNormal => (CurrentMode == Mode.Horizontal) ? Vector3.up : Vector3.back;
 
     private void Awake()
     {
@@ -81,11 +81,13 @@ public class Arena : MonoBehaviour
         return Vector3.Dot(incomingPoint, planeNormal) - planeOffset;
     }
     
-    public Vector3 ConstrainPointToArena(Vector3 incomingPoint, float planeOffset = 0.0f)
+    public Vector3 ProjectPointToArena(Vector3 incomingPoint, float planeOffset = 0.0f)
     {
         //@NOTE: We are assuming that our normal vector is normalized.
         float distanceFromPlane = DistanceFromPlane(incomingPoint, CurrentNormal, 0.0f);
-        return incomingPoint - CurrentNormal * distanceFromPlane;
+        Vector3 pointProjectedOnPlane = incomingPoint - CurrentNormal * distanceFromPlane;
+
+        return pointProjectedOnPlane;
     }
 
     public Vector3 Convert2Dto3D(Vector2 inVector)
