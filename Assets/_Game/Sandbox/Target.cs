@@ -33,7 +33,10 @@ public class Target : MonoBehaviour
         float maxAccelForFrame = Time.deltaTime * accelerationRate;
         _velocity = Vector3.MoveTowards(_velocity, desired3DVelocity, maxAccelForFrame);
 
-        // apply acceleration to position
-        transform.localPosition += _velocity * Time.deltaTime;
+        // Clamp our movement to stay within the arena bounds.
+        Vector3 newPosition = _arena.ConstrainPointToArena(transform.localPosition + _velocity * Time.deltaTime);
+        
+        // Perform the move.
+        transform.localPosition = newPosition;
     }
 }

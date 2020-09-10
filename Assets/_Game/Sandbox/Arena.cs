@@ -81,7 +81,7 @@ public class Arena : MonoBehaviour
         return Vector3.Dot(incomingPoint, planeNormal) - planeOffset;
     }
     
-    public Vector3 ProjectPointOntoArena(Vector3 incomingPoint, float planeOffset = 0.0f)
+    public Vector3 ConstrainPointToArena(Vector3 incomingPoint, float planeOffset = 0.0f)
     {
         //@NOTE: We are assuming that our normal vector is normalized.
         float distanceFromPlane = DistanceFromPlane(incomingPoint, CurrentNormal, 0.0f);
