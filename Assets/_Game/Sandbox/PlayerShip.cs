@@ -4,9 +4,11 @@
 public class PlayerShip : MonoBehaviour
 {
     [SerializeField] GameObject target = default;
-    private float _distanceFromTarget = 3.0f;
-    private Arena _arena;
-    private Rigidbody rigidbody;
+    [SerializeField] private float _distanceFromTarget = 3.0f;
+    [SerializeField] private float _moveSpeed = 4.0f;
+    
+    private Arena _arena = default;
+    private Vector3 _velocity = default;
 
     private void Awake()
     {
@@ -14,26 +16,23 @@ public class PlayerShip : MonoBehaviour
         
         _arena = GetComponentInParent<Arena>();
         Debug.Assert(_arena, $"{gameObject.name} has no Arena in it's parent..");
-
-        rigidbody = GetComponent<Rigidbody>();
-        Debug.Assert(rigidbody, $"{gameObject.name} has no Rigidbody! It should have one!");
     }
 
     private void Update()
     {
         var targetTransform = target.transform;
+        var currentTransform = transform;
 
-        if (_arena.CurrentMode == Arena.Mode.Horizontal)
-        {
-            transform.localPosition = target.transform.localPosition - Vector3.back * _distanceFromTarget;
-            transform.localRotation = Quaternion.identity;
-        }
-        else
-        {
-            Quaternion look = Quaternion.LookRotation(
-                targetTransform.localPosition - transform.localPosition, Vector3.up);
-            transform.localRotation = look;
+        Quaternion look = Quaternion.LookRotation(
+            targetTransform.localPosition - currentTransform.localPosition, Vector3.up);
 
-        }
+        var desiredPosition = target.transform.localPosition - Vector3.back * _distanceFromTarget;
+
+        float smoothTime = _arena.CurrentMode == Arena.Mode.Horizontal ? 0.01f : 0.6f;
+        
+        Vector3 newPosition = Vector3.SmoothDamp(currentTransform.position, desiredPosition, ref _velocity, smoothTime, _moveSpeed);
+
+        currentTransform.position = newPosition;
+        currentTransform.localRotation = look;
     }
 }

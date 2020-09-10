@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df7bf9e5a1744943b900e1dd29a0079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2.2
-  accelerationRate: 6
+  maxSpeed: 6
+  accelerationRate: 15
 --- !u!23 &168575060
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -521,6 +521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 168575057}
+  _distanceFromTarget: 4
+  _moveSpeed: 10
 --- !u!54 &1382232446
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -532,7 +534,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
