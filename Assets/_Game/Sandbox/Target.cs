@@ -5,8 +5,9 @@ public class Target : MonoBehaviour
     private Arena _arena;
     [SerializeField] private float maxSpeed = 2.2f;
     [SerializeField] private float accelerationRate = 6.0f;
+    private float boundaryBufferDistance = 2.0f;
 
-    private Vector2 _velocity;
+    private Vector3 _velocity;
 
     private void Awake()
     {
@@ -16,48 +17,23 @@ public class Target : MonoBehaviour
 
     private void Update()
     {
-        var moveInput = _arena.playerInput.Flying.Move.ReadValue<Vector2>();
+        // Get input, work out what the player is asking for.
+        Vector2 moveInput = _arena.playerInput.Flying.Move.ReadValue<Vector2>().normalized;
+        Vector2 desired2DVelocity = moveInput * maxSpeed;
 
-        var desiredVelocity = new Vector2(moveInput.x, moveInput.y) * maxSpeed;
-        var maxAccelForFrame = (Time.deltaTime * accelerationRate);
+        // If they are asking to steer into a wall, scale desiredVelocity.
+        float distanceToBounds = _arena.ForwardDistanceToBounds(transform.localPosition, desired2DVelocity);
+        if (distanceToBounds < boundaryBufferDistance)
+            desired2DVelocity *= Mathf.Clamp01(distanceToBounds / boundaryBufferDistance);
 
-        var newVelocity = Vector2.MoveTowards(_velocity, desiredVelocity, maxAccelForFrame);
-        _velocity = newVelocity;
-        Debug.Log($"{moveInput.magnitude}, {newVelocity.magnitude}");
+        // Convert their 2D input into the correct 3D desired velocity.
+        Vector3 desired3DVelocity = _arena.Convert2Dto3D(desired2DVelocity);
 
-        Vector3 positionDelta;
-        if (_arena.currentMode == Arena.Mode.Horizontal)
-        {
-            positionDelta = new Vector3(newVelocity.x, 0.0f, newVelocity.y); 
-        }
-        else
-        {
-            positionDelta = new Vector3(newVelocity.x, newVelocity.y,0.0f); 
-        }        
-        
-        transform.position += positionDelta * (Time.deltaTime * maxSpeed);
+        // Apply acceleration to _velocity based on the desired velocity.
+        float maxAccelForFrame = Time.deltaTime * accelerationRate;
+        _velocity = Vector3.MoveTowards(_velocity, desired3DVelocity, maxAccelForFrame);
 
-
-
-        /* Because I was listening to a podcast while I wrote this code....
-         * 
-         * ***                PARADOX PILLARS                *** *
-         * 
-         * LOOKS GOOD PLAYS PERFECT *
-         * 
-         * Paradox games never sacrifice function to form,
-         * and always prioritizes gameplay over everything else.
-         *
-         * 
-         * GIVES AGENCY TO THE PLAYER *
-         *
-         * Paradox games give players the tools to express their creativity,
-         * make their gaming experience their own. From character customization to
-         * emergent storytelling or extensive modding.
-         *
-         *
-         * 
-         */
-
+        // apply acceleration to position
+        transform.localPosition += _velocity * Time.deltaTime;
     }
 }

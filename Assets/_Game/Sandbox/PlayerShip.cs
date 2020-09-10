@@ -23,7 +23,7 @@ public class PlayerShip : MonoBehaviour
     {
         var targetTransform = target.transform;
 
-        if (_arena.currentMode == Arena.Mode.Horizontal)
+        if (_arena.CurrentMode == Arena.Mode.Horizontal)
         {
             transform.localPosition = target.transform.localPosition - Vector3.back * _distanceFromTarget;
             transform.localRotation = Quaternion.identity;
@@ -35,8 +35,5 @@ public class PlayerShip : MonoBehaviour
             transform.localRotation = look;
 
         }
-
-
-
     }
 }

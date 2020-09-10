@@ -11,7 +11,7 @@ public class ArenaEditor : Editor
         var transform = arena.transform;
 
         arena.horizontalArena = ResizeArena(transform, arena.horizontalArena, Arena.Mode.Horizontal);
-        arena.vertcalArena = ResizeArena(transform, arena.vertcalArena, Arena.Mode.Vertical);
+        arena.verticalArena = ResizeArena(transform, arena.verticalArena, Arena.Mode.Vertical);
     }
 
     private static Vector2 ResizeArena(Transform transform, Vector2 arena, Arena.Mode mode)
@@ -19,15 +19,14 @@ public class ArenaEditor : Editor
         Color fillCol = (mode == Arena.Mode.Horizontal) ? Handles.yAxisColor : Handles.zAxisColor;
         Handles.color = fillCol;
         
-        Vector2 halfSize = new Vector2(arena.x * 0.5f, arena.y * 0.5f);
-        Vector3[] corners = GenerateCorners(halfSize, mode);
+        Vector3[] corners = GenerateCorners(arena, mode);
 
         Handles.matrix =
             transform.localToWorldMatrix;
         var transparentColor = new Color(fillCol.r, fillCol.g, fillCol.b, 0.15f);
         Handles.DrawSolidRectangleWithOutline(corners, transparentColor, fillCol);
 
-        Vector3[] handlePoints = GenerateHandlePoints(halfSize, mode);
+        Vector3[] handlePoints = GenerateHandlePoints(arena, mode);
 
         float capSize = 0.25f;
         float snap = 0.1f;
