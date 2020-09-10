@@ -803,7 +803,10 @@ MonoBehaviour:
   playerShip: {fileID: 1382232440}
   targetReticle: {fileID: 168575057}
   arena: {fileID: 843084213}
-  cameraDisplacement: {x: 0, y: 3.4, z: -5}
+  displacement: {x: 0, y: 4, z: -7}
+  rotateSpeed: 3
+  smoothTime: 0.1
+  tiltAmount: 0.3
 --- !u!1 &2119514340
 GameObject:
   m_ObjectHideFlags: 0

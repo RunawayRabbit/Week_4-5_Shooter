@@ -9,6 +9,7 @@ public class FollowCam : MonoBehaviour
     [SerializeField] private Vector3 displacement = default;
     [SerializeField] private float rotateSpeed = 3.0f;
     [SerializeField] private float smoothTime = 0.1f;
+    [SerializeField] private float tiltAmount = 3.0f;
     
     private Arena _arena;
     private Vector3 _velocity;
@@ -29,8 +30,10 @@ public class FollowCam : MonoBehaviour
 
         newPosition = Vector3.SmoothDamp(currentPosition, newPosition, ref _velocity, smoothTime);
         transform.position = newPosition;
-        
-        Quaternion newRotation = Quaternion.LookRotation(targetReticle.transform.position - currentPosition);
+
+        float lateralVelocity = Vector3.Dot(_velocity, transform.right);
+        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * tiltAmount, Vector3.forward);
+        Quaternion newRotation = tilt * Quaternion.LookRotation(targetReticle.transform.position - currentPosition);
         Quaternion.RotateTowards(transform.rotation, newRotation, rotateSpeed);
         transform.rotation = newRotation;
     }

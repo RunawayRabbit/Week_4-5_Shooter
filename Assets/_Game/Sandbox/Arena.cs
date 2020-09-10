@@ -92,8 +92,37 @@ public class Arena : MonoBehaviour
 
     public Vector3 Convert2Dto3D(Vector2 inVector)
     {
+        return Convert2Dto3D(inVector, Vector3.zero);
+    }
+    public Vector3 Convert2Dto3D(Vector2 inVector, Vector3 currentPosition)
+    {
         return (CurrentMode == Mode.Horizontal)
-            ? new Vector3(inVector.x, 0.0f, inVector.y)
-            : new Vector3(inVector.x, inVector.y, 0.0f);
+            ? new Vector3(inVector.x, -currentPosition.y, inVector.y)
+            : new Vector3(inVector.x, inVector.y, -currentPosition.z);
+    }
+
+    public Vector3 ConstrainToBounds(Vector3 inPosition)
+    {
+        Vector3 outPosition;
+        outPosition.x = Mathf.Clamp(inPosition.x, -CurrentArena.x, CurrentArena.x);
+        if (CurrentMode == Mode.Horizontal)
+        {
+            outPosition.y = inPosition.y;
+            outPosition.z = Mathf.Clamp(inPosition.z, -CurrentArena.y, CurrentArena.y);
+        }
+        else
+        {
+            outPosition.y = Mathf.Clamp(inPosition.y, -CurrentArena.y, CurrentArena.y);
+            outPosition.z = inPosition.z;
+        }
+
+        return outPosition;
+    }
+
+    public Vector3 DirectionToPlane(Vector3 inPosition)
+    {
+        return CurrentMode == Mode.Horizontal ?
+            inPosition.y < 0.0f ? Vector3.up : Vector3.down :
+            inPosition.z < 0.0f ? Vector3.forward : Vector3.back;
     }
 }

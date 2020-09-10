@@ -29,18 +29,23 @@ public class Target : MonoBehaviour
         if (distanceToBounds < boundaryBufferDistance)
             desired2DVelocity *= Mathf.Clamp01(distanceToBounds / boundaryBufferDistance);
 
-        // Convert their 2D input into the correct 3D desired velocity.
-        Vector3 desired3DVelocity = _arena.Convert2Dto3D(desired2DVelocity);
+        // Convert 2D input into the correct 3D desired velocity.
+        Vector3 desired3DVelocity = _arena.Convert2Dto3D(desired2DVelocity, transform.localPosition);
 
         // Add necessary velocity to get us back to the arena's current plane.
-        Vector3 smoothReturnToPlane = Vector3.Scale(transform.localPosition,-_arena.CurrentNormal);
-        desired3DVelocity += smoothReturnToPlane;
+        /*Vector3 directionTowardsPlane = _arena.DirectionToPlane(transform.localPosition);
+        Vector3 smoothReturnToPlane = Vector3.Scale(transform.localPosition,directionTowardsPlane);
+        desired3DVelocity += directionTowardsPlane;
+        */
         
         // Apply acceleration to _velocity based on the desired velocity.
         float maxAccelForFrame = Time.deltaTime * accelerationRate;
         _velocity = Vector3.MoveTowards(_velocity, desired3DVelocity, maxAccelForFrame);
  
+        // Constrain final position to the appropriate bounds.
+        Vector3 newPosition = _arena.ConstrainToBounds(transform.localPosition + _velocity * Time.deltaTime);
+        
         // Perform the move.
-        transform.localPosition += _velocity * Time.deltaTime;
+        transform.localPosition = newPosition;
     }
 }
