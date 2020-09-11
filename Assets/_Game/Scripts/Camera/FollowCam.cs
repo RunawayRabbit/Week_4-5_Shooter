@@ -5,11 +5,9 @@ public class FollowCam : MonoBehaviour
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject targetReticle;
     [SerializeField] private GameObject arena;
-    
-    [SerializeField] private Vector3 displacement = default;
-    [SerializeField] private float rotateSpeed = 3.0f;
-    [SerializeField] private float smoothTime = 0.1f;
-    [SerializeField] private float tiltAmount = 3.0f;
+    private CameraBehaviour camBehaviour;
+
+    [SerializeField] private CamBehaviourData[] camData;
     
     private Arena _arena;
     private Vector3 _velocity;
@@ -21,20 +19,18 @@ public class FollowCam : MonoBehaviour
 
         _arena = arena.GetComponent<Arena>();
         Debug.Assert(_arena, $"{gameObject.name} can't find the Arena! Did you forget to set a reference to it?");
+        
+        Debug.Assert(camData.Length > 0, $"{gameObject.name} doesn't have any assigned camera data!");
+        
+        // I think this isn't working because it's taking a copy and not a ref?
+        camBehaviour = new CameraBehaviour(camData[0], playerShip, targetReticle);
     }
 
+    
+    
     private void Update()
     {
-        var currentPosition = transform.position;
-        Vector3 newPosition = playerShip.transform.position + displacement;
-
-        newPosition = Vector3.SmoothDamp(currentPosition, newPosition, ref _velocity, smoothTime);
-        transform.position = newPosition;
-
-        float lateralVelocity = Vector3.Dot(_velocity, transform.right);
-        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * tiltAmount, Vector3.forward);
-        Quaternion newRotation = tilt * Quaternion.LookRotation(targetReticle.transform.position - currentPosition);
-        Quaternion.RotateTowards(transform.rotation, newRotation, rotateSpeed);
-        transform.rotation = newRotation;
+        transform.localPosition = camBehaviour.GetPosition(transform.localPosition);
+        transform.rotation = camBehaviour.GetRotation(transform);
     }
 }
