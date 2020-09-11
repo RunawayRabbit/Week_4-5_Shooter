@@ -5,7 +5,7 @@ public class FollowCam : MonoBehaviour
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject targetReticle;
     [SerializeField] private GameObject arena;
-    private CameraBehaviour camBehaviour;
+    private CameraBehaviour _camBehaviour;
 
     [SerializeField] private CamBehaviourData[] camData;
     
@@ -23,14 +23,12 @@ public class FollowCam : MonoBehaviour
         Debug.Assert(camData.Length > 0, $"{gameObject.name} doesn't have any assigned camera data!");
         
         // I think this isn't working because it's taking a copy and not a ref?
-        camBehaviour = new CameraBehaviour(camData[0], playerShip, targetReticle);
+        _camBehaviour = new OverShoulderCam(camData[0], playerShip, targetReticle);
     }
 
-    
-    
     private void Update()
     {
-        transform.localPosition = camBehaviour.GetPosition(transform.localPosition);
-        transform.rotation = camBehaviour.GetRotation(transform);
+        transform.localPosition = _camBehaviour.GetPosition(transform.localPosition);
+        transform.rotation = _camBehaviour.GetRotation(transform);
     }
 }
