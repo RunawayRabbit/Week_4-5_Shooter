@@ -30,7 +30,7 @@ public class Target : MonoBehaviour
         Vector2 desired2DVelocity = _moveInput * maxSpeed;
 
         /* @TODO: I don't like this solution so much. What we really want is a Vector2 so we can dampen our
-         velocity component-wise. This approach causes us to "stick" on invisible edge walls..*/
+         velocity component-wise. This approach causes us to "stick" on invisible edge walls.. */
         // If they are asking to steer into a wall, scale desiredVelocity.
         float distanceToBounds = _arena.ForwardDistanceToBounds(transform.localPosition, desired2DVelocity);
         if (distanceToBounds < boundaryBufferDistance)
@@ -38,12 +38,6 @@ public class Target : MonoBehaviour
 
         // Convert 2D input into the correct 3D desired velocity.
         Vector3 desired3DVelocity = _arena.Convert2Dto3D(desired2DVelocity, transform.localPosition);
-
-        // Add necessary velocity to get us back to the arena's current plane.
-        /*Vector3 directionTowardsPlane = _arena.DirectionToPlane(transform.localPosition);
-        Vector3 smoothReturnToPlane = Vector3.Scale(transform.localPosition,directionTowardsPlane);
-        desired3DVelocity += directionTowardsPlane;
-        */
         
         // Apply acceleration to _velocity based on the desired velocity.
         float maxAccelForFrame = Time.deltaTime * accelerationRate;
