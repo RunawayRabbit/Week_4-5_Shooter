@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.Assertions;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Target : MonoBehaviour
 {
@@ -9,18 +10,24 @@ public class Target : MonoBehaviour
     private float boundaryBufferDistance = 2.0f;
 
     private Vector3 _velocity;
-
+    private Vector2 _moveInput;
+    
     private void Awake()
     {
         _arena = GetComponentInParent<Arena>();
         Debug.Assert(_arena, $"{gameObject.name} has no Arena in it's parent..");
     }
 
+    // ReSharper disable once UnusedMember.Global
+    public void OnInput(InputAction.CallbackContext context)
+    {
+        _moveInput = context.ReadValue<Vector2>();
+    }
+
     private void Update()
     {
         // Get input, work out what the player is asking for.
-        Vector2 moveInput = _arena.playerInput.Flying.Move.ReadValue<Vector2>().normalized;
-        Vector2 desired2DVelocity = moveInput * maxSpeed;
+        Vector2 desired2DVelocity = _moveInput * maxSpeed;
 
         /* @TODO: I don't like this solution so much. What we really want is a Vector2 so we can dampen our
          velocity component-wise. This approach causes us to "stick" on invisible edge walls..*/

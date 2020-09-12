@@ -9,8 +9,6 @@ public class Arena : MonoBehaviour
     }
     public Mode CurrentMode { get; private set; }
 
-    public GameplayControls playerInput;
-
     public Vector2 horizontalArena;
     public Vector2 verticalArena;
     private Vector2 CurrentArena => (CurrentMode == Mode.Horizontal) ? horizontalArena : verticalArena;
@@ -23,20 +21,13 @@ public class Arena : MonoBehaviour
     private void Awake()
     {
         CurrentMode = Mode.Horizontal;
-        playerInput = new GameplayControls();
     }
     
-    private void OnEnable() => playerInput.Enable();
-    private void OnDisable() => playerInput.Disable();
-
-    private void Update()
-    {
-        //@TODO: This needs to be event-driven.
-        if (playerInput.Flying.DEBUG.triggered)
-        {
-            CurrentMode = CurrentMode == Mode.Horizontal ? Mode.Vertical : Mode.Horizontal; 
-            Debug.Log($"MODE SWITCHED: {CurrentMode}");
-        }
+    // ReSharper disable once UnusedMember.Global
+    public void ToggleMode()
+    {   
+        CurrentMode = CurrentMode == Mode.Horizontal ? Mode.Vertical : Mode.Horizontal; 
+        Debug.Log($"MODE SWITCHED: {CurrentMode}");
     }
 
     public float ForwardDistanceToBounds(Vector3 point, Vector2 inDirection)

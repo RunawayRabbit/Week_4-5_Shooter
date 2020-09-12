@@ -328,6 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 957385160}
+  - component: {fileID: 957385161}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -349,6 +350,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &957385161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957385159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 168575058}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: OnInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 053ee7ab-5ba5-49e4-9b17-6d8124a6750c
+    m_ActionName: Flying/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1d5892c-47cc-4c1c-9236-828730e314d8
+    m_ActionName: Flying/DEBUG[/Keyboard/q]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Flying
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1311986387
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,10 +855,8 @@ MonoBehaviour:
   playerShip: {fileID: 1382232440}
   targetReticle: {fileID: 168575057}
   arena: {fileID: 843084213}
-  displacement: {x: 0, y: 4, z: -7}
-  rotateSpeed: 3
-  smoothTime: 0.1
-  tiltAmount: 0.3
+  camData:
+  - {fileID: 11400000, guid: d2d93218a87fa6a4fac078611ccaff83, type: 2}
 --- !u!1 &2119514340
 GameObject:
   m_ObjectHideFlags: 0
