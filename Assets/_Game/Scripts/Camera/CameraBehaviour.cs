@@ -32,8 +32,8 @@ public abstract class CameraBehaviour
         smoothTime = camData.smoothTime;
         tiltAmount = camData.tiltAmount;
 
-        _followTargets = _followTargets;
-        _lookTargets = _lookTargets;
+        _followTargets = followTargets;
+        _lookTargets = lookTargets;
     }
 
     public abstract Vector3 GetPosition(Vector3 inPosition);
