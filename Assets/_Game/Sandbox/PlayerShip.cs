@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditorInternal;
+﻿
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,12 +8,13 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] private float _distanceFromTarget = 3.0f;
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private float overShoulderLag = 0.4f;
+    [SerializeField] private float weaponRotateThresholdVelocity = 0.333f;
     
     private Arena _arena = default;
     private Vector3 _velocity = default;
 
     public WeaponSlot[] weaponSlots;
-    
+
     private void Awake()
     {
         if(!target) Debug.Assert(target, $"{gameObject.name} does not have a target object set!");
@@ -42,6 +42,23 @@ public class PlayerShip : MonoBehaviour
     }
 
     // ReSharper disable once UnusedMember.Global
+    public void Move(InputAction.CallbackContext context)
+    {
+        //@NOTE: Actual movement isn't handled here! It's handled in the target reticle, we just follow that around.
+        // This callback is only for managing things that also happen when we move.
+        
+        // Rotate weapons
+        var input = context.ReadValue<Vector2>();
+        var input3D =  input.sqrMagnitude < weaponRotateThresholdVelocity ?
+            Vector3.zero :
+            new Vector3(input.x, 0.0f, input.y);
+        
+        foreach (var weaponSlot in weaponSlots)
+            weaponSlot.Rotate(input3D);
+    }
+
+
+    // ReSharper disable once UnusedMember.Global
     public void Shoot(InputAction.CallbackContext context)
     {
         switch (context.phase)
@@ -58,14 +75,6 @@ public class PlayerShip : MonoBehaviour
                 weaponSlot.StopShooting();
             }
             break;
-            case InputActionPhase.Disabled:
-                break;
-            case InputActionPhase.Waiting:
-                break;
-            case InputActionPhase.Performed:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
     }
 }

@@ -1,20 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-internal class BulletWeapon : Weapon
+internal class ProjectileWeapon : Weapon
 {
     private Coroutine _shootingCoroutine;
     
     protected readonly float _fireRate = 1.0f;
     public override void StartShooting()
     {
-        Debug.Log("START SHOOTING");
         _shootingCoroutine = StartCoroutine(Shoot());
     }
 
     public override void StopShooting()
     {
-        Debug.Log("STOP SHOOTING");
         StopCoroutine(_shootingCoroutine);
     }
 
@@ -22,7 +20,7 @@ internal class BulletWeapon : Weapon
     {
         while (true)
         {
-            Debug.Log("Fire The Bullet!");
+            Debug.Log("BRRRRRRR");
             yield return new WaitForSeconds(_fireRate); 
         }
     }
