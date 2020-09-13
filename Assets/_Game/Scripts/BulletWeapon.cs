@@ -3,22 +3,27 @@ using UnityEngine;
 
 internal class BulletWeapon : Weapon
 {
+    private Coroutine _shootingCoroutine;
+    
+    protected readonly float _fireRate = 1.0f;
     public override void StartShooting()
     {
-        Debug.Log("Bullet weapon goes brrr");
-        StartCoroutine(Shoot());
+        Debug.Log("START SHOOTING");
+        _shootingCoroutine = StartCoroutine(Shoot());
     }
 
     public override void StopShooting()
     {
-        Debug.Log("Bullet weapon stops going brrr");
-        StopCoroutine(Shoot());
+        Debug.Log("STOP SHOOTING");
+        StopCoroutine(_shootingCoroutine);
     }
 
     public IEnumerator Shoot()
     {
-        //Do the thing to fire the bullet.
-        Debug.Log("Fire The Bullet!");
-        yield return new WaitForSeconds(_fireRate);
+        while (true)
+        {
+            Debug.Log("Fire The Bullet!");
+            yield return new WaitForSeconds(_fireRate); 
+        }
     }
 }

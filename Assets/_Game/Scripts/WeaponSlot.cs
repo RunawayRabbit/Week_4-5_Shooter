@@ -4,13 +4,26 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class WeaponSlot : MonoBehaviour
 {
-    private GameObject currentWeaponPrefab;
+    private GameObject WeaponObject;
+    private Weapon currentWeapon;
+    
     int PowerUpLayer;
+
+    private bool _hasWeaponAttached = false;
+
+    public void StartShooting()
+    {
+        if (_hasWeaponAttached) currentWeapon.StartShooting();
+    }
+
+    public void StopShooting()
+    {
+        if (_hasWeaponAttached) currentWeapon.StopShooting();
+    }
 
     private void Awake()
     {
         PowerUpLayer = LayerMask.NameToLayer("Powerup");
-        Debug.Log($"Powerup layer set to {PowerUpLayer}");
     }
 
     private void OnCollisionEnter(Collision other)
@@ -18,10 +31,15 @@ public class WeaponSlot : MonoBehaviour
         if (other.gameObject.layer == PowerUpLayer &&
             other.gameObject.TryGetComponent<WeaponPowerUp>(out var powerUp))
         {
-            if (currentWeaponPrefab && currentWeaponPrefab.TryGetComponent<Weapon>(out var currentWeapon))
+            if (_hasWeaponAttached)
                 currentWeapon.Decomission();
            
-            currentWeaponPrefab = Instantiate(powerUp.weaponPrefab, gameObject.transform);
+            WeaponObject = Instantiate(powerUp.weaponPrefab, gameObject.transform);
+            currentWeapon = WeaponObject.GetComponent<Weapon>();
+            if (!currentWeapon)
+                Debug.LogWarning($"{this.name} loaded a prefab from {other.gameObject.name}, but the prefab had no weapon component!");
+
+            _hasWeaponAttached = true;
         }
     }
 }

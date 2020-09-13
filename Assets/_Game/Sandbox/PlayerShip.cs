@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditorInternal;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShip : MonoBehaviour
 {
@@ -10,8 +13,8 @@ public class PlayerShip : MonoBehaviour
     private Arena _arena = default;
     private Vector3 _velocity = default;
 
-    public GameObject[] weaponSlots;
-
+    public WeaponSlot[] weaponSlots;
+    
     private void Awake()
     {
         if(!target) Debug.Assert(target, $"{gameObject.name} does not have a target object set!");
@@ -38,9 +41,31 @@ public class PlayerShip : MonoBehaviour
         currentTransform.localRotation = look;
     }
 
-    public void StartShooting()
+    // ReSharper disable once UnusedMember.Global
+    public void Shoot(InputAction.CallbackContext context)
     {
-        
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+            foreach (var weaponSlot in weaponSlots)
+            {
+                weaponSlot.StartShooting();
+            }
+            break;
+            case InputActionPhase.Canceled:
+            foreach (var weaponSlot in weaponSlots)
+            {
+                weaponSlot.StopShooting();
+            }
+            break;
+            case InputActionPhase.Disabled:
+                break;
+            case InputActionPhase.Waiting:
+                break;
+            case InputActionPhase.Performed:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
-    
 }

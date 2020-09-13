@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(PlayerShip))]
 public class PlayerShipEditor : Editor
@@ -11,15 +10,15 @@ public class PlayerShipEditor : Editor
         base.OnInspectorGUI();
         var ship = (PlayerShip) target;
 
-        var weaponSlots = new List<GameObject>();
+        var weaponSlots = new List<WeaponSlot>();
         
         for (var childIndex = 0;
             childIndex < ship.transform.childCount;
             childIndex++)
         {
             var child = ship.transform.GetChild(childIndex);
-            if(child.TryGetComponent<WeaponSlot>(out _))
-                weaponSlots.Add(child.gameObject);
+            if(child.TryGetComponent<WeaponSlot>(out var weaponSlot))
+                weaponSlots.Add(weaponSlot);
         }
 
         ship.weaponSlots = weaponSlots.ToArray();

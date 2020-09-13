@@ -11,7 +11,6 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected bool _isShooting;
-    protected float _fireRate;
     
     public abstract void StartShooting();
     public abstract void StopShooting();
