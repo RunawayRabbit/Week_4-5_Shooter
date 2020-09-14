@@ -378,9 +378,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 50
-  turningArc: -51.923477
   minRotation: {x: 0, y: 0, z: 1}
-  maxRotation: {x: -0.7871878, y: 0, z: 0.61671335}
+  maxRotation: {x: -0.8138924, y: 0, z: 0.5810156}
+  turningArc: -54.477997
 --- !u!54 &870842063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -576,9 +576,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1
-  turningArc: 0
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: 1, y: 0, z: -0}
+  turningArc: 0
 --- !u!1 &1266338028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,9 +1135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 50
-  turningArc: 61.668583
   minRotation: {x: 0, y: 0, z: 1}
-  maxRotation: {x: 0.88021725, y: 0, z: 0.47457093}
+  maxRotation: {x: 0.8048651, y: 0, z: 0.59345776}
+  turningArc: 0
 --- !u!135 &1648869997
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -13,12 +13,10 @@ public class WeaponSlot : MonoBehaviour
     int PowerUpLayer;
 
     private bool _hasWeaponAttached = false;
-    
-    public float turningArc;
-    
     [SerializeField] private Vector3 minRotation = Vector3.forward;
     [SerializeField] public Vector3 maxRotation;
-    
+    [SerializeField] public float turningArc;
+
     private Vector3 _targetVector = Vector3.forward;
     private float _arcWindingDirection = default;
 
@@ -69,6 +67,7 @@ public class WeaponSlot : MonoBehaviour
     
     public void Rotate(Vector3 input)
     {
+        if (rotateSpeed <= 0.0f) return;
         if (input == Vector3.zero)
             _targetVector = transform.forward;
         else
