@@ -24,9 +24,9 @@ public class Target : MonoBehaviour
         renderer.enabled = false;
     }
 
-    private void OnModeChange(object sender, Arena.ModeChangeArgs args)
+    private void OnModeChange(Arena.Mode newMode)
     {
-        if (args.NewMode == Arena.Mode.Horizontal)
+        if (newMode == Arena.Mode.Horizontal)
             renderer.enabled = false;
         else
             renderer.enabled = true;

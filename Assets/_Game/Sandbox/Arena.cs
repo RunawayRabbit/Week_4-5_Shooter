@@ -17,11 +17,8 @@ public class Arena : MonoBehaviour
     public Vector2 horizontalArena;
     public Vector2 verticalArena;
     private Vector2 CurrentArena => (CurrentMode == Mode.Horizontal) ? horizontalArena : verticalArena;
-    public event EventHandler<ModeChangeArgs> OnModeChange;
-    public class ModeChangeArgs : EventArgs
-    {
-        public Arena.Mode NewMode;
-    }
+    public event Action<Arena.Mode> OnModeChange;
+    
     
     //@NOTE: This code requires that our arenas always be axis-aligned vertical and horizontal.
     public static Vector3 BasisX = Vector3.right;
@@ -44,7 +41,7 @@ public class Arena : MonoBehaviour
         if (!context.started) return;
         CurrentMode = CurrentMode == Mode.Horizontal ? Mode.Vertical : Mode.Horizontal; 
         Debug.Log($"MODE SWITCHED: {CurrentMode}");
-        OnModeChange?.Invoke(this, new ModeChangeArgs{ NewMode = CurrentMode});
+        OnModeChange?.Invoke(CurrentMode);
     }
 
     public float ForwardDistanceToBounds(Vector3 point, Vector2 inDirection)

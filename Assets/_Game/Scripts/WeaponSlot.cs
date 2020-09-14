@@ -60,7 +60,7 @@ public class WeaponSlot : MonoBehaviour
         Arena.Instance.OnModeChange -= ChangeMode;
     }
 
-    private void ChangeMode(object sender, Arena.ModeChangeArgs args) => _currentMode = args.NewMode;
+    private void ChangeMode(Arena.Mode newMode) => _currentMode = newMode;
 
     private void OnCollisionEnter(Collision other)
     {
