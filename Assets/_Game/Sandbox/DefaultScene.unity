@@ -489,7 +489,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &870842062
 MonoBehaviour:
@@ -503,6 +503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fe9cf522e4ea489b991f9828623cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderRadiusWhileEmpty: 2
+  colliderRadiusWhileActive: 1
   rotateSpeed: 100
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: -0.5, y: 0, z: 0.8660254}
@@ -691,7 +693,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1181036968
 MonoBehaviour:
@@ -705,6 +707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fe9cf522e4ea489b991f9828623cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderRadiusWhileEmpty: 2
+  colliderRadiusWhileActive: 1
   rotateSpeed: 0
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: 0, y: 0, z: 1}
@@ -1280,6 +1284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fe9cf522e4ea489b991f9828623cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderRadiusWhileEmpty: 2
+  colliderRadiusWhileActive: 1
   rotateSpeed: 100
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: 0.5, y: 0, z: 0.8660254}
@@ -1295,7 +1301,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1751816296
 GameObject:

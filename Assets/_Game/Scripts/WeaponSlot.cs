@@ -1,13 +1,16 @@
 ﻿
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider)), SelectionBase]
 public class WeaponSlot : MonoBehaviour
 {
     private GameObject WeaponObject;
     private Weapon currentWeapon;
+    private SphereCollider ourCollider;
+
+    [SerializeField] private float colliderRadiusWhileEmpty = 2.0f;
+    [SerializeField] private float colliderRadiusWhileActive = 1.0f;
     
     [SerializeField] private float rotateSpeed = 50.0f;
     
@@ -21,7 +24,7 @@ public class WeaponSlot : MonoBehaviour
     private Vector3 _targetVector = Vector3.forward;
     private float _arcWindingDirection = default;
 
-    private GameObject _targetReticle = default;
+    private GameObject _targetReticule = default;
 
     private Arena.Mode _currentMode = Arena.Mode.Horizontal;
 
@@ -46,8 +49,11 @@ public class WeaponSlot : MonoBehaviour
         
         _arcWindingDirection = Vector3.Dot(Vector3.Cross(minRotation, maxRotation), Vector3.up);
         
-        _targetReticle = GameObject.FindWithTag("TargetReticule");
-        if(!_targetReticle) Debug.LogWarning("Target Reticle not found! Remember to set the TAG for it!");
+        _targetReticule = GameObject.FindWithTag("TargetReticule");
+        if(!_targetReticule) Debug.LogWarning("Target Reticle not found! Remember to set the TAG for it!");
+
+        ourCollider = GetComponent<SphereCollider>();
+        if(!ourCollider) Debug.LogWarning($"{this.name} has no SphereCollider on it. We can't pick up powerups without one!");
     }
 
     private void OnEnable()
@@ -76,6 +82,7 @@ public class WeaponSlot : MonoBehaviour
                 Debug.LogWarning($"{this.name} loaded a prefab from {other.gameObject.name}, but the prefab had no weapon component!");
 
             _hasWeaponAttached = true;
+            ourCollider.radius = colliderRadiusWhileActive;
         }
     }
 
@@ -85,7 +92,7 @@ public class WeaponSlot : MonoBehaviour
         if (_currentMode == Arena.Mode.Horizontal)
             pointAt = _targetVector;
         else
-            pointAt = _targetReticle.transform.position - transform.position;
+            pointAt = _targetReticule.transform.position - transform.position;
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation,
             Quaternion.LookRotation(pointAt, Vector3.up),
