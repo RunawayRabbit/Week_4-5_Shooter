@@ -9,12 +9,27 @@ public class Target : MonoBehaviour
     [SerializeField] private float accelerationRate = 6.0f;
     private float boundaryBufferDistance = 2.0f;
 
+    private Renderer renderer;
+    
     private Vector3 _velocity;
     private Vector2 _moveInput;
     
     private void Start()
     {
         _arena = Arena.Instance;
+        _arena.OnModeChange += OnModeChange;
+        renderer = GetComponent<Renderer>();
+        if(!renderer) Debug.Log($"{gameObject.name} has no renderer component, it should probably have one.");
+
+        renderer.enabled = false;
+    }
+
+    private void OnModeChange(object sender, Arena.ModeChangeArgs args)
+    {
+        if (args.NewMode == Arena.Mode.Horizontal)
+            renderer.enabled = false;
+        else
+            renderer.enabled = true;
     }
 
     // ReSharper disable once UnusedMember.Global
