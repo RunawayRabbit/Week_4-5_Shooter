@@ -1,6 +1,7 @@
 ﻿
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider)), SelectionBase]
 public class WeaponSlot : MonoBehaviour
@@ -20,6 +21,10 @@ public class WeaponSlot : MonoBehaviour
     private Vector3 _targetVector = Vector3.forward;
     private float _arcWindingDirection = default;
 
+    private GameObject _targetReticle = default;
+
+    private Arena.Mode _currentMode = Arena.Mode.Horizontal;
+
     public void StartShooting()
     {
         if (_hasWeaponAttached) currentWeapon.StartShooting();
@@ -38,8 +43,24 @@ public class WeaponSlot : MonoBehaviour
     private void Awake()
     {
         PowerUpLayer = LayerMask.NameToLayer("Powerup");
+        
         _arcWindingDirection = Vector3.Dot(Vector3.Cross(minRotation, maxRotation), Vector3.up);
+        
+        _targetReticle = GameObject.FindWithTag("TargetReticule");
+        if(!_targetReticle) Debug.LogWarning("Target Reticle not found! Remember to set the TAG for it!");
     }
+
+    private void OnEnable()
+    {
+        Arena.Instance.OnModeChange += ChangeMode;
+    }
+
+    private void OnDisable()
+    {
+        Arena.Instance.OnModeChange -= ChangeMode;
+    }
+
+    private void ChangeMode(object sender, Arena.ModeChangeArgs args) => _currentMode = args.NewMode;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -60,18 +81,28 @@ public class WeaponSlot : MonoBehaviour
 
     private void Update()
     {
+        Vector3 pointAt;
+        if (_currentMode == Arena.Mode.Horizontal)
+            pointAt = _targetVector;
+        else
+            pointAt = _targetReticle.transform.position - transform.position;
+
         transform.rotation = Quaternion.RotateTowards(transform.rotation,
-            Quaternion.LookRotation(_targetVector, Vector3.up),
-            rotateSpeed * Time.deltaTime);
+            Quaternion.LookRotation(pointAt, Vector3.up),
+            rotateSpeed * Time.deltaTime);  
+        
     }
-    
+
     public void Rotate(Vector3 input)
     {
-        if (rotateSpeed <= 0.0f) return;
-        if (input == Vector3.zero)
-            _targetVector = transform.forward;
-        else
-            _targetVector = SelectFacingVector(input);
+        if (_currentMode == Arena.Mode.Horizontal)
+        {
+            if (rotateSpeed <= 0.0f) return;
+            if (input == Vector3.zero)
+                _targetVector = transform.forward;
+            else
+                _targetVector = SelectFacingVector(input);
+        }
     }
     
     

@@ -10,19 +10,16 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] private float overShoulderLag = 0.4f;
     [SerializeField] private float weaponRotateThresholdVelocity = 0.333f;
     
-    private Arena _arena = default;
+    private Arena _arena;
     private Vector3 _velocity = default;
 
     private bool _locked;
 
     public WeaponSlot[] weaponSlots;
 
-    private void Awake()
+    private void Start()
     {
-        if(!target) Debug.Assert(target, $"{gameObject.name} does not have a target object set!");
-        
-        _arena = GetComponentInParent<Arena>();
-        Debug.Assert(_arena, $"{gameObject.name} has no Arena in it's parent..");
+        _arena = Arena.Instance;
     }
 
     private void Update()

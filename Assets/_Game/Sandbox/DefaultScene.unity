@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 168575058}
   m_Layer: 2
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: TargetReticule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 168575057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 843084215}
   m_RootOrder: 0
@@ -505,8 +505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 100
   minRotation: {x: 0, y: 0, z: 1}
-  maxRotation: {x: -0.34202012, y: 0, z: 0.9396926}
-  turningArc: -20
+  maxRotation: {x: -0.5, y: 0, z: 0.8660254}
+  turningArc: -30
 --- !u!54 &870842063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
       - m_Target: {fileID: 843084214}
         m_TargetAssemblyTypeName: Arena, Assembly-CSharp
         m_MethodName: ToggleMode
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -639,6 +639,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 261c5c29-1f99-4ea8-9679-1a0bccee0b1d
     m_ActionName: Flying/Shoot[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9dbc867-8785-4bb8-bde6-91ef8b0937c4
+    m_ActionName: Flying/Lock[/Keyboard/leftCtrl,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Flying
@@ -1005,7 +1009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 168575057}
-  _distanceFromTarget: 4
+  _distanceFromTarget: 6
   _moveSpeed: 12
   overShoulderLag: 0.27
   weaponRotateThresholdVelocity: 0.333
@@ -1178,6 +1182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554893972}
+  - component: {fileID: 1554893973}
   m_Layer: 0
   m_Name: _Dynamic
   m_TagString: Untagged
@@ -1199,6 +1204,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1554893973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554893971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da37093e46a25a4082753c0c064e515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  prefab: {fileID: 4639389982959027063, guid: ccb512b0d1218434d8080e2439793b21, type: 3}
+  maxCount: 80
 --- !u!1 &1648869993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1245,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648869993}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.5, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1262,8 +1282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 100
   minRotation: {x: 0, y: 0, z: 1}
-  maxRotation: {x: 0.34202012, y: 0, z: 0.9396926}
-  turningArc: 20
+  maxRotation: {x: 0.5, y: 0, z: 0.8660254}
+  turningArc: 30
 --- !u!135 &1648869997
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -12,10 +12,9 @@ public class Target : MonoBehaviour
     private Vector3 _velocity;
     private Vector2 _moveInput;
     
-    private void Awake()
+    private void Start()
     {
-        _arena = GetComponentInParent<Arena>();
-        Debug.Assert(_arena, $"{gameObject.name} has no Arena in it's parent..");
+        _arena = Arena.Instance;
     }
 
     // ReSharper disable once UnusedMember.Global
