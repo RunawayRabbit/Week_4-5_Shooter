@@ -37,9 +37,19 @@ public class WeaponSlotEditor : Editor
             {
                 Undo.RecordObject(weaponSlot, "Changed weapon slot arc.");
                 weaponSlot.turningArc = _arcHandle.angle;
-                var newAngle = _arcHandle.angle * Mathf.Deg2Rad;
-                weaponSlot.maxRotation = new Vector3(Mathf.Sin(newAngle), 0.0f, Mathf.Cos(newAngle));
+                ResetMaxRotation(weaponSlot);
             }
         }
+    }
+
+    private void OnValidate()
+    {
+        ResetMaxRotation((WeaponSlot) target);
+    }
+
+    private void ResetMaxRotation(WeaponSlot weaponSlot)
+    {
+        var newAngle = _arcHandle.angle * Mathf.Deg2Rad;
+        weaponSlot.maxRotation = new Vector3(Mathf.Sin(newAngle), 0.0f, Mathf.Cos(newAngle));
     }
 }
