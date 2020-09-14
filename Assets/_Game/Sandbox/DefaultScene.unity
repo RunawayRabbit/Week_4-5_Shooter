@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 523799794}
   - component: {fileID: 523799793}
   m_Layer: 9
-  m_Name: Sphere (2)
+  m_Name: Powerup 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 1266338033}
   - component: {fileID: 1266338034}
   m_Layer: 9
-  m_Name: Sphere
+  m_Name: Powerup 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 1481021547}
   - component: {fileID: 1481021546}
   m_Layer: 9
-  m_Name: Sphere (1)
+  m_Name: Powerup 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
