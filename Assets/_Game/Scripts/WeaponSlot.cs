@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider)), SelectionBase]
@@ -14,7 +13,7 @@ public class WeaponSlot : MonoBehaviour
     
     [SerializeField] private float rotateSpeed = 50.0f;
     
-    int PowerUpLayer;
+    private int _powerUpLayer;
 
     private bool _hasWeaponAttached = false;
     [SerializeField] private Vector3 minRotation = Vector3.forward;
@@ -22,9 +21,8 @@ public class WeaponSlot : MonoBehaviour
     [SerializeField] public float turningArc;
 
     private Vector3 _targetVector = Vector3.forward;
-    private float _arcWindingDirection = default;
-
     private GameObject _targetReticule = default;
+    private float _arcWindingDirection = default;
 
     private Arena.Mode _currentMode = Arena.Mode.Horizontal;
 
@@ -38,14 +36,16 @@ public class WeaponSlot : MonoBehaviour
         if (_hasWeaponAttached) currentWeapon.StopShooting();
     }
 
+    #if UNITY_EDITOR
     private void OnValidate()
     {
         _arcWindingDirection = Vector3.Dot(Vector3.Cross(minRotation, maxRotation), Vector3.up);
     }
+    #endif
     
     private void Awake()
     {
-        PowerUpLayer = LayerMask.NameToLayer("Powerup");
+        _powerUpLayer = LayerMask.NameToLayer("Powerup");
         
         _arcWindingDirection = Vector3.Dot(Vector3.Cross(minRotation, maxRotation), Vector3.up);
         
@@ -56,21 +56,14 @@ public class WeaponSlot : MonoBehaviour
         if(!ourCollider) Debug.LogWarning($"{this.name} has no SphereCollider on it. We can't pick up powerups without one!");
     }
 
-    private void OnEnable()
-    {
-        Arena.Instance.OnModeChange += ChangeMode;
-    }
-
-    private void OnDisable()
-    {
-        Arena.Instance.OnModeChange -= ChangeMode;
-    }
-
+    private void OnEnable() => Arena.Instance.OnModeChange += ChangeMode;
+    private void OnDisable() => Arena.Instance.OnModeChange -= ChangeMode;
+    
     private void ChangeMode(Arena.Mode newMode) => _currentMode = newMode;
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == PowerUpLayer &&
+        if (other.gameObject.layer == _powerUpLayer &&
             other.gameObject.TryGetComponent<WeaponPowerUp>(out var powerUp))
         {
             if (_hasWeaponAttached)
@@ -97,7 +90,6 @@ public class WeaponSlot : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation,
             Quaternion.LookRotation(pointAt, Vector3.up),
             rotateSpeed * Time.deltaTime);  
-        
     }
 
     public void Rotate(Vector3 input)
@@ -105,14 +97,10 @@ public class WeaponSlot : MonoBehaviour
         if (_currentMode == Arena.Mode.Horizontal)
         {
             if (rotateSpeed <= 0.0f) return;
-            if (input == Vector3.zero)
-                _targetVector = transform.forward;
-            else
-                _targetVector = SelectFacingVector(input);
+            _targetVector = input == Vector3.zero ? transform.forward : SelectFacingVector(input);
         }
     }
-    
-    
+
     private Vector3 SelectFacingVector(Vector3 input)
     {
         float minToInputWinding = Vector3.Dot(Vector3.Cross(minRotation, input), Vector3.up);

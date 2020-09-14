@@ -642,7 +642,19 @@ MonoBehaviour:
     m_ActionId: 261c5c29-1f99-4ea8-9679-1a0bccee0b1d
     m_ActionName: Flying/Shoot[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1382232445}
+        m_TargetAssemblyTypeName: PlayerShip, Assembly-CSharp
+        m_MethodName: Lock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b9dbc867-8785-4bb8-bde6-91ef8b0937c4
     m_ActionName: Flying/Lock[/Keyboard/leftCtrl,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1222,7 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   prefab: {fileID: 4639389982959027063, guid: ccb512b0d1218434d8080e2439793b21, type: 3}
-  maxCount: 80
+  maxCount: 65
 --- !u!1 &1648869993
 GameObject:
   m_ObjectHideFlags: 0
