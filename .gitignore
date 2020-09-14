@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.meta
+.idea/.idea.Week_4-5_Shooter/.idea/workspace.xml
+.idea/.idea.Week_4-5_Shooter/.idea/indexLayout.xml

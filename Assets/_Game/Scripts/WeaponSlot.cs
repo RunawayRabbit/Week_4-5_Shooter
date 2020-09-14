@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider)), SelectionBase]
 public class WeaponSlot : MonoBehaviour
 {
     private GameObject WeaponObject;

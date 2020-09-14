@@ -13,6 +13,8 @@ public class PlayerShip : MonoBehaviour
     private Arena _arena = default;
     private Vector3 _velocity = default;
 
+    private bool _locked;
+
     public WeaponSlot[] weaponSlots;
 
     private void Awake()
@@ -52,11 +54,11 @@ public class PlayerShip : MonoBehaviour
         var input3D =  input.sqrMagnitude < weaponRotateThresholdVelocity ?
             Vector3.zero :
             new Vector3(input.x, 0.0f, input.y);
-        
+
+        if (_locked) return;
         foreach (var weaponSlot in weaponSlots)
             weaponSlot.Rotate(input3D);
     }
-
 
     // ReSharper disable once UnusedMember.Global
     public void Shoot(InputAction.CallbackContext context)
@@ -75,6 +77,20 @@ public class PlayerShip : MonoBehaviour
                 weaponSlot.StopShooting();
             }
             break;
+        }
+    }
+    
+    // ReSharper disable once UnusedMember.Global
+    public void Lock(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                _locked = true;
+                break;
+            case InputActionPhase.Canceled:
+                _locked = false;
+                break;
         }
     }
 }
