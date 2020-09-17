@@ -7,54 +7,44 @@ public class OverShoulderCam : ICameraBehaviour
     private List<GameObject> _followTargets;
     private List<GameObject> _lookTargets;
 
-    private readonly CameraAttributes _attribs;
-    
-    private Vector3 _velocity = Vector3.zero;
+    public CameraAttributes Attribs { get; }
 
-    public OverShoulderCam(CameraAttributes attribs, GameObject followTarget = null, GameObject lookTarget = null)
+    public OverShoulderCam(ref CameraAttributes attribs, GameObject followTarget = null, GameObject lookTarget = null)
     {
         _followTargets = new List<GameObject> {followTarget};
         _lookTargets = new List<GameObject> {lookTarget};
 
-        _attribs = attribs;
+        Attribs = attribs;
     }
     
-    public OverShoulderCam(CameraAttributes attribs, List<GameObject> followTargets = null, List<GameObject> lookTargets = null)
+    public OverShoulderCam(ref CameraAttributes attribs, List<GameObject> followTargets = null, List<GameObject> lookTargets = null)
     {
         _followTargets = followTargets;
         _lookTargets = lookTargets;
         
-        _attribs = attribs;
+        Attribs = attribs;
     }
     
-    public Vector3 GetPosition(CameraController cam)
+    public void MoveCamera(CameraController cam, ref Vector3 position, ref Vector3 lookAt, out Vector3 cameraUp, ref float fov)
     {
-        Vector3 followTarget = AggregateTargets(_followTargets);
-    
-        Vector3 newPosition = followTarget + _attribs.displacement;
-        return Vector3.SmoothDamp(cam.transform.position, newPosition, ref _velocity, _attribs.smoothTime);
-    }
-
-    public Quaternion GetRotation(CameraController cam)
-    {
-        Vector3 lookPosition = AggregateTargets(_lookTargets);
-        float lateralVelocity = Vector3.Dot(_velocity, cam.transform.right);
-        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * _attribs.tiltAmount, Vector3.forward);
-        Quaternion newRotation = tilt * Quaternion.LookRotation(lookPosition - cam.transform.localPosition);
-
-        if (_attribs.rotateSpeed <= 0.0f)
-        {
-            return newRotation;
-        }        
+        var camTransform = cam.transform;
         
-        return Quaternion.RotateTowards(cam.transform.rotation, newRotation, _attribs.rotateSpeed);
+        Vector3 newPos = AggregateTargets(_followTargets) + Attribs.displacement;
+        var velocity = newPos - position;
+        position = newPos;
+        
+        lookAt = AggregateTargets(_lookTargets) - camTransform.localPosition;
+
+        var camTransformRight = camTransform.right;
+        float lateralVelocity = Vector3.Dot(velocity, camTransformRight);
+        //Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * Attribs.tiltAmount, camTransform.forward);
+        var tiltedVector = camTransformRight * (lateralVelocity * Attribs.tiltAmount);
+        cameraUp = (Vector3.up + tiltedVector).normalized;
+        
+        Debug.Log(cameraUp);
+        fov = Attribs.FoV;
     }
 
-    public float GetFoV(CameraController cam, float currentFoV)
-    {
-        return _attribs.FoV;
-    }
-    
     private Vector3 AggregateTargets(List<GameObject> targets)
     {
         if (targets.Count == 1)

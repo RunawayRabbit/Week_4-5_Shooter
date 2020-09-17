@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class CameraController : MonoBehaviour
 
     public CameraAttributes OverShoulderAttribs;
     public CameraAttributes TopDownAttribs;
-    
-    private Arena _arena;
-    private Vector3 _velocity;
-    private Camera _camera;
 
+    private Vector3 _lookTarget;
+
+    private Arena _arena;
+    private Camera _camera;
+    
     private void Awake()
     {
         _camera = Camera.main;
@@ -23,8 +25,8 @@ public class CameraController : MonoBehaviour
 
         _arena = arena.GetComponent<Arena>();
         Debug.Assert(_arena, $"{gameObject.name} can't find the Arena! Did you forget to set a reference to it?");
-        
-        _camBehaviour = new TopDownCam(TopDownAttribs, playerShip, targetReticle);
+
+        _camBehaviour = DefaultTopDownCam();
 
         _arena.OnModeChange += ChangeMode;
     }
@@ -32,19 +34,31 @@ public class CameraController : MonoBehaviour
     private void ChangeMode(Arena.Mode newMode)
     {
         var oldCam = _camBehaviour;
-        ICameraBehaviour newCam;
-        if (newMode == Arena.Mode.Horizontal)
-            newCam = new TopDownCam(TopDownAttribs,playerShip, targetReticle);
-        else
-            newCam = new OverShoulderCam(OverShoulderAttribs, playerShip, targetReticle);
-        
-        _camBehaviour = new TransitionCam(oldCam,newCam, 0.8f);
+        ICameraBehaviour newCam = newMode == Arena.Mode.Horizontal ? DefaultTopDownCam() : DefaultOverShoulderCam();
+        _camBehaviour = new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);//new TransitionCam(oldCam, newCam, 3.0f);
+    }
+    
+    private ICameraBehaviour DefaultTopDownCam()
+    {
+        var followTargets = new List<GameObject> {playerShip, _arena.gameObject};
+        return new TopDownCam(ref TopDownAttribs, followTargets, playerShip);
+    }
+
+    private ICameraBehaviour DefaultOverShoulderCam()
+    {
+        return new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);
     }
 
     private void Update()
     {
-        transform.localPosition = _camBehaviour.GetPosition(this);
-        transform.rotation = _camBehaviour.GetRotation(this);
-        _camera.fieldOfView = _camBehaviour.GetFoV(this, _camera.fieldOfView);
+        var trans = transform;
+        var pos = trans.position;
+        var fov = _camera.fieldOfView;
+
+        _camBehaviour.MoveCamera(this, ref pos, ref _lookTarget, out Vector3 cameraUp, ref fov);
+        
+        transform.position = pos;
+        transform.rotation = Quaternion.LookRotation(_lookTarget, cameraUp);
+        _camera.fieldOfView = fov;
     }
 }

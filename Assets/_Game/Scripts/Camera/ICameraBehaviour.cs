@@ -2,7 +2,5 @@
 
 public interface ICameraBehaviour
 {
-    Vector3 GetPosition(CameraController cam);
-    Quaternion GetRotation(CameraController cam);
-    float GetFoV(CameraController cam, float currentFoV);
+    void MoveCamera(CameraController cam, ref Vector3 position, ref Vector3 lookAt, out Vector3 cameraUp, ref float fov);
 }
