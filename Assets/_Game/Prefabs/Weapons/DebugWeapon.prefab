@@ -205,3 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.15
+  shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}

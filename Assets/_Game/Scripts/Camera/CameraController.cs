@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject playerShip;
-    [SerializeField] private GameObject targetReticle;
-    [SerializeField] private GameObject arena;
+    [SerializeField] private GameObject playerShip = default;
+    [SerializeField] private GameObject targetReticle = default;
+    [SerializeField] private GameObject arena = default;
     private ICameraBehaviour _camBehaviour;
 
     [SerializeField] private CamAttributes overShoulderAttribs;
