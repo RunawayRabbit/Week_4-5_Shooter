@@ -16,6 +16,7 @@ public class PlayerShip : MonoBehaviour
     private bool _locked;
 
     public WeaponSlot[] weaponSlots;
+    private Vector3 _input3D;
 
     private void Start()
     {
@@ -43,18 +44,18 @@ public class PlayerShip : MonoBehaviour
     // ReSharper disable once UnusedMember.Global
     public void Move(InputAction.CallbackContext context)
     {
-        //@NOTE: Actual movement isn't handled here! It's handled in the target reticle, we just follow that around.
+        //@NOTE: Actual movement isn't handled here! It's handled in the target reticule, we just follow that around.
         // This callback is only for managing things that also happen when we move.
         
         // Rotate weapons
         var input = context.ReadValue<Vector2>();
-        var input3D =  input.sqrMagnitude < weaponRotateThresholdVelocity ?
+        _input3D = input.sqrMagnitude < weaponRotateThresholdVelocity ?
             Vector3.zero :
             new Vector3(input.x, 0.0f, input.y);
-
+        
         if (_locked) return;
         foreach (var weaponSlot in weaponSlots)
-            weaponSlot.Rotate(input3D);
+            weaponSlot.Rotate(_input3D);
     }
 
     // ReSharper disable once UnusedMember.Global
@@ -87,6 +88,8 @@ public class PlayerShip : MonoBehaviour
                 break;
             case InputActionPhase.Canceled:
                 _locked = false;
+                foreach (var weaponSlot in weaponSlots)
+                    weaponSlot.Rotate(_input3D);
                 break;
         }
     }
