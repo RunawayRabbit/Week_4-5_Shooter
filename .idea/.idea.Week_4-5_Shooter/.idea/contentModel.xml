@@ -13,7 +13,6 @@
             <e p="Arena.cs" t="Include" />
             <e p="Camera" t="Include">
               <e p="CamAttributes.cs" t="Include" />
-              <e p="CameraBehaviour.cs" t="Include" />
               <e p="CameraController.cs" t="Include" />
               <e p="CameraTransition.cs" t="Include" />
               <e p="ICameraBehaviour.cs" t="Include" />
@@ -25,16 +24,18 @@
               <e p="WeaponSlotEditor.cs" t="Include" />
             </e>
             <e p="PlayerShip.cs" t="Include" />
-            <e p="Pool.cs" t="Include" />
-            <e p="ProjectileWeapon.cs" t="Include" />
-            <e p="SimpleBullet.cs" t="Include" />
             <e p="Target.cs" t="Include" />
             <e p="Utils" t="Include">
               <e p="DrawGizmoGrid.cs" t="Include" />
+              <e p="Pool.cs" t="Include" />
             </e>
-            <e p="Weapon.cs" t="Include" />
-            <e p="WeaponPowerUp.cs" t="Include" />
-            <e p="WeaponSlot.cs" t="Include" />
+            <e p="Weapons" t="Include">
+              <e p="ProjectileWeapon.cs" t="Include" />
+              <e p="SimpleBullet.cs" t="Include" />
+              <e p="Weapon.cs" t="Include" />
+              <e p="WeaponPowerUp.cs" t="Include" />
+              <e p="WeaponSlot.cs" t="Include" />
+            </e>
           </e>
         </e>
       </e>
