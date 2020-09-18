@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TopDown
   m_EditorClassIdentifier: 
   displacement: {x: 0, y: 50, z: 0}
-  rotateSpeed: 3
-  smoothTime: 0.6
-  tiltAmount: 3
-  fieldOfView: 20
-  fieldOfViewSmoothTime: 0.8
+  rotateSpeed: 10
+  smoothTime: 0.2
+  tiltAmount: 0
+  fieldOfView: 18
+  fieldOfViewSmoothTime: 0.3
   followTargets:
   - {fileID: 0}
   lookTargets:

@@ -28,8 +28,8 @@ public class CameraController : MonoBehaviour
         overShoulderAttribs.lookTargets = new List<GameObject> { targetReticle };
 
         Debug.Assert(topDownAttribs, $"{gameObject.name} doesn't have any assigned Top Down camera attribs!!");
-        topDownAttribs.followTargets = new List<GameObject> { playerShip };
-        topDownAttribs.lookTargets = new List<GameObject> { targetReticle };
+        topDownAttribs.followTargets = new List<GameObject> { playerShip, arena };
+        topDownAttribs.lookTargets = new List<GameObject> { playerShip, arena };
 
         _camBehaviour = new OverShoulderCam(ref topDownAttribs);
     }

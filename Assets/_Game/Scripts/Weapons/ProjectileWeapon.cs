@@ -4,10 +4,10 @@ using UnityEngine;
 internal class ProjectileWeapon : Weapon
 {
     private Coroutine _shootingCoroutine;
-    private Pool bulletPool;
+    private Pool _bulletPool;
     
-    protected readonly float _fireRate = 0.3f;
-    private GameObject bulletPrefab;
+    [SerializeField] protected float fireRate = 0.3f;
+    private GameObject _bulletPrefab;
 
     public override void StartShooting()
     {
@@ -33,7 +33,7 @@ internal class ProjectileWeapon : Weapon
                 bullet.SetActive(true);
             }
             
-            yield return new WaitForSeconds(_fireRate); 
+            yield return new WaitForSeconds(fireRate); 
         }
     }
 }

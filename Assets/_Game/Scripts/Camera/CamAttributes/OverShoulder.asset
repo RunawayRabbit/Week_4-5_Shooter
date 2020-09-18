@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75f2cc3a2248394f824c23b2f73c1fb, type: 3}
   m_Name: OverShoulder
   m_EditorClassIdentifier: 
-  displacement: {x: 0, y: 3, z: -7}
+  displacement: {x: 0, y: 5.4, z: -17.8}
   rotateSpeed: 3
-  smoothTime: 0.8
-  tiltAmount: 3
-  fieldOfView: 40
+  smoothTime: 0.1
+  tiltAmount: 1.2
+  fieldOfView: 30
   fieldOfViewSmoothTime: 0.8
   followTargets:
   - {fileID: 0}
