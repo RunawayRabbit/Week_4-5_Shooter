@@ -1,0 +1,16 @@
+Index: Assets/_Game/Scripts/Camera/CameraController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Collections.Generic;\r\nusing UnityEngine;\r\n\r\npublic class CameraController : MonoBehaviour\r\n{\r\n    [SerializeField] private GameObject playerShip = default;\r\n    [SerializeField] private GameObject targetReticle = default;\r\n    [SerializeField] private GameObject arena = default;\r\n    \r\n    public ICameraBehaviour _camBehaviour;\r\n\r\n    public CameraAttributes OverShoulderAttribs;\r\n    public CameraAttributes TopDownAttribs;\r\n\r\n    private Vector3 _lookTarget;\r\n\r\n    private Arena _arena;\r\n    private Camera _camera;\r\n    \r\n    private void Awake()\r\n    {\r\n        _camera = Camera.main;\r\n        Debug.Assert(playerShip, $\"{gameObject.name} has no reference to the player ship!\");\r\n        Debug.Assert(targetReticle, $\"{gameObject.name} has no reference to the target reticle!\");\r\n\r\n        _arena = arena.GetComponent<Arena>();\r\n        Debug.Assert(_arena, $\"{gameObject.name} can't find the Arena! Did you forget to set a reference to it?\");\r\n\r\n        _camBehaviour = DefaultTopDownCam();\r\n\r\n        _arena.OnModeChange += ChangeMode;\r\n    }\r\n\r\n    private void ChangeMode(Arena.Mode newMode)\r\n    {\r\n        var oldCam = _camBehaviour;\r\n        ICameraBehaviour newCam = newMode == Arena.Mode.Horizontal ? DefaultTopDownCam() : DefaultOverShoulderCam();\r\n        _camBehaviour = new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);//new TransitionCam(oldCam, newCam, 3.0f);\r\n    }\r\n    \r\n    private ICameraBehaviour DefaultTopDownCam()\r\n    {\r\n        var followTargets = new List<GameObject> {playerShip, _arena.gameObject};\r\n        return new TopDownCam(ref TopDownAttribs, followTargets, playerShip);\r\n    }\r\n\r\n    private ICameraBehaviour DefaultOverShoulderCam()\r\n    {\r\n        return new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);\r\n    }\r\n\r\n    private void Update()\r\n    {\r\n        var trans = transform;\r\n        var pos = trans.position;\r\n        var fov = _camera.fieldOfView;\r\n\r\n        _camBehaviour.MoveCamera(this, ref pos, ref _lookTarget, out Vector3 cameraUp, ref fov);\r\n        \r\n        transform.position = pos;\r\n        transform.rotation = Quaternion.LookRotation(_lookTarget, cameraUp);\r\n        _camera.fieldOfView = fov;\r\n    }\r\n}\r\n
+===================================================================
+--- Assets/_Game/Scripts/Camera/CameraController.cs	(revision 1dd401114ecf69c93be1cfa05a5822291c974659)
++++ Assets/_Game/Scripts/Camera/CameraController.cs	(date 1600435798680)
+@@ -35,7 +35,7 @@
+     {
+         var oldCam = _camBehaviour;
+         ICameraBehaviour newCam = newMode == Arena.Mode.Horizontal ? DefaultTopDownCam() : DefaultOverShoulderCam();
+-        _camBehaviour = new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);//new TransitionCam(oldCam, newCam, 3.0f);
++        _camBehaviour = newCam; //new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);//new TransitionCam(oldCam, newCam, 3.0f);
+     }
+     
+     private ICameraBehaviour DefaultTopDownCam()

@@ -1,0 +1,17 @@
+Index: .idea/.idea.Week_4-5_Shooter/.idea/contentModel.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ContentModelStore\">\r\n    <e p=\"C:\\Users\\yourf\\AppData\\Local\\JetBrains\\Rider2020.1\\extResources\" t=\"IncludeRecursive\" />\r\n    <e p=\"C:\\Users\\yourf\\AppData\\Local\\JetBrains\\Rider2020.1\\resharper-host\\Local\\Transient\\ReSharperHost\\v201\\SolutionCaches\\_Week_4-5_Shooter.-1902136123.00\" t=\"ExcludeRecursive\" />\r\n    <e p=\"C:\\Users\\yourf\\AppData\\Roaming\\JetBrains\\Rider2020.1\\scratches\" t=\"IncludeRecursive\" />\r\n    <e p=\"E:\\git\\Week_4-5_Shooter\" t=\"IncludeRecursive\">\r\n      <e p=\"Assembly-CSharp-Editor.csproj\" t=\"IncludeRecursive\" />\r\n      <e p=\"Assembly-CSharp.csproj\" t=\"IncludeRecursive\" />\r\n      <e p=\"Assets\" t=\"Include\">\r\n        <e p=\"_Game\" t=\"Include\">\r\n          <e p=\"Sandbox\" t=\"Include\">\r\n            <e p=\"Arena.cs\" t=\"Include\" />\r\n            <e p=\"Editor\" t=\"Include\">\r\n              <e p=\"ArenaEditor.cs\" t=\"Include\" />\r\n              <e p=\"PlayerShipEditor.cs\" t=\"Include\" />\r\n              <e p=\"WeaponSlotEditor.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"PlayerShip.cs\" t=\"Include\" />\r\n            <e p=\"Pool.cs\" t=\"Include\" />\r\n            <e p=\"Target.cs\" t=\"Include\" />\r\n          </e>\r\n          <e p=\"Scripts\" t=\"Include\">\r\n            <e p=\"Camera\" t=\"Include\">\r\n              <e p=\"CameraAttributes.cs\" t=\"Include\" />\r\n              <e p=\"CameraController.cs\" t=\"Include\" />\r\n              <e p=\"CameraTransition.cs\" t=\"Include\" />\r\n              <e p=\"ICameraBehaviour.cs\" t=\"Include\" />\r\n              <e p=\"OverShoulderCam.cs\" t=\"Include\" />\r\n              <e p=\"TopDownCam.cs\" t=\"Include\" />\r\n              <e p=\"TransitionCam.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"ProjectileWeapon.cs\" t=\"Include\" />\r\n            <e p=\"SimpleBullet.cs\" t=\"Include\" />\r\n            <e p=\"Utils\" t=\"Include\">\r\n              <e p=\"DrawGizmoGrid.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"Weapon.cs\" t=\"Include\" />\r\n            <e p=\"WeaponPowerUp.cs\" t=\"Include\" />\r\n            <e p=\"WeaponSlot.cs\" t=\"Include\" />\r\n          </e>\r\n        </e>\r\n      </e>\r\n      <e p=\"obj\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Packages\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Temp\\bin\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Week_4-5_Shooter.sln\" t=\"IncludeFlat\" />\r\n    </e>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.idea.Week_4-5_Shooter/.idea/contentModel.xml	(revision 1dd401114ecf69c93be1cfa05a5822291c974659)
++++ .idea/.idea.Week_4-5_Shooter/.idea/contentModel.xml	(date 1600435531863)
+@@ -24,6 +24,7 @@
+             <e p="Camera" t="Include">
+               <e p="CameraAttributes.cs" t="Include" />
+               <e p="CameraController.cs" t="Include" />
++              <e p="CameraData.cs" t="Include" />
+               <e p="CameraTransition.cs" t="Include" />
+               <e p="ICameraBehaviour.cs" t="Include" />
+               <e p="OverShoulderCam.cs" t="Include" />
