@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displacement: {x: 0, y: 5.4, z: -17.8}
   rotateSpeed: 3
-  smoothTime: 0.8
+  smoothTime: 0.6
   tiltAmount: 1.2
   fieldOfView: 30
   fieldOfViewSmoothTime: 0.8
