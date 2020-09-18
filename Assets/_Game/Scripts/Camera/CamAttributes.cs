@@ -10,6 +10,7 @@ public class CamAttributes : ScriptableObject
     public float tiltAmount = 3.0f;
     public float fieldOfView = 40.0f;
     public float fieldOfViewSmoothTime = 5.0f;
+    public Vector3 cameraUp = Vector3.up;
     
     [HideInInspector] public List<GameObject> followTargets;
     [HideInInspector] public List<GameObject> lookTargets;

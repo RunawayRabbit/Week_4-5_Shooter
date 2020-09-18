@@ -6,20 +6,27 @@ public class OverShoulderCam : ICameraBehaviour
     public CamAttributes Attribs { get; set; }
     
     protected Vector3 _velocity = Vector3.zero;
+    protected Vector3 _lookVelocity = Vector3.zero;
+    protected Vector3 prevLookPosition;
     protected float _fovVelocity = 0.0f;
     
     public OverShoulderCam(ref CamAttributes camAttribs)
     {
         Attribs = camAttribs;
+        prevLookPosition = AggregateTargets(Attribs.lookTargets);
     }
    
     public Quaternion GetRotation(Transform inTransform)
     {
-        Vector3 lookPosition = AggregateTargets(Attribs.lookTargets);
-        
+        Vector3 lookPosition = Vector3.SmoothDamp(prevLookPosition, AggregateTargets(Attribs.lookTargets), ref _lookVelocity,
+            Attribs.smoothTime);
+
         float lateralVelocity = Vector3.Dot(_velocity, inTransform.right);
-        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * Attribs.tiltAmount, Vector3.forward);
-        Quaternion newRotation = tilt * Quaternion.LookRotation(lookPosition - inTransform.localPosition);
+        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * Attribs.tiltAmount, inTransform.forward);
+        Quaternion newRotation = tilt * Quaternion.LookRotation(lookPosition - inTransform.localPosition, Attribs.cameraUp);
+
+        prevLookPosition = lookPosition;
+        
         return Quaternion.RotateTowards(inTransform.rotation, newRotation, Attribs.rotateSpeed);
     }
 
