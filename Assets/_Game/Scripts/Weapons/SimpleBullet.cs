@@ -9,7 +9,7 @@ public class SimpleBullet : MonoBehaviour
     [SerializeField] private float speed = 1.0f;
     [SerializeField] float lifetime = 10.0f;
 
-    private Coroutine lifetimeTracker;
+    private Coroutine _lifetimeTracker;
     public Pool pool;
 
     private void Awake()
@@ -23,12 +23,12 @@ public class SimpleBullet : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
         
-        lifetimeTracker = StartCoroutine(DeathClock());
+        _lifetimeTracker = StartCoroutine(DeathClock());
     }
 
     private void OnDisable()
     {
-        StopCoroutine(lifetimeTracker);
+        StopCoroutine(_lifetimeTracker);
     }
 
     public IEnumerator DeathClock()

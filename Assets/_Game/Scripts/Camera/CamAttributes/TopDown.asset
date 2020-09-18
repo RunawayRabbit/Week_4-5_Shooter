@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75f2cc3a2248394f824c23b2f73c1fb, type: 3}
   m_Name: TopDown
   m_EditorClassIdentifier: 
-  displacement: {x: 0, y: 50, z: 0}
+  displacement: {x: 0, y: 80, z: 0}
   rotateSpeed: 10
-  smoothTime: 0.2
+  smoothTime: 0.8
   tiltAmount: 0
   fieldOfView: 18
   fieldOfViewSmoothTime: 0.3
+  cameraUp: {x: 0, y: 0, z: 1}
   followTargets:
   - {fileID: 0}
+  - {fileID: 0}
   lookTargets:
+  - {fileID: 0}
   - {fileID: 0}

@@ -503,12 +503,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fe9cf522e4ea489b991f9828623cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadiusWhileEmpty: 2
   colliderRadiusWhileActive: 1
   rotateSpeed: 100
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: -0.5, y: 0, z: 0.8660254}
   turningArc: -30
+  startingWeapon: {fileID: 0}
 --- !u!54 &870842063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -719,12 +719,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fe9cf522e4ea489b991f9828623cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadiusWhileEmpty: 2
   colliderRadiusWhileActive: 1
   rotateSpeed: 0
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: 0, y: 0, z: 1}
   turningArc: 0
+  startingWeapon: {fileID: 5992139387392019244, guid: a0d6de2fc09b261439fe296898246c61, type: 3}
 --- !u!1 &1266338028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,12 +1296,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fe9cf522e4ea489b991f9828623cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadiusWhileEmpty: 2
   colliderRadiusWhileActive: 1
   rotateSpeed: 100
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: 0.5, y: 0, z: 0.8660254}
   turningArc: 30
+  startingWeapon: {fileID: 0}
 --- !u!135 &1648869997
 SphereCollider:
   m_ObjectHideFlags: 0
