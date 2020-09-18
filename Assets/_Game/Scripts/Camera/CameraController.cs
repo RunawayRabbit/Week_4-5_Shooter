@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
-public class FollowCam : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject playerShip;
     [SerializeField] private GameObject targetReticle;
     [SerializeField] private GameObject arena;
-    private CameraBehaviour _camBehaviour;
+    private ICameraBehaviour _camBehaviour;
 
-    [SerializeField] private CamBehaviourData[] camData;
+    [SerializeField] private CamAttributes OverShoulderAttribs;
+    [SerializeField] private CamAttributes TopDownAttribs;
     
     private Arena _arena;
     private Vector3 _velocity;
@@ -20,15 +21,18 @@ public class FollowCam : MonoBehaviour
         _arena = arena.GetComponent<Arena>();
         Debug.Assert(_arena, $"{gameObject.name} can't find the Arena! Did you forget to set a reference to it?");
         
-        Debug.Assert(camData.Length > 0, $"{gameObject.name} doesn't have any assigned camera data!");
+        Debug.Assert(OverShoulderAttribs, $"{gameObject.name} doesn't have any assigned Over Shoulder camera attribs!");
+        Debug.Assert(TopDownAttribs, $"{gameObject.name} doesn't have any assigned Top Down camera attribs!!");
         
-        // I think this isn't working because it's taking a copy and not a ref?
-        _camBehaviour = new OverShoulderCam(camData[0], playerShip, targetReticle);
+        _camBehaviour = new OverShoulderCam(ref OverShoulderAttribs, playerShip, targetReticle);
     }
 
-    private void Update()
+    
+    
+    private void LateUpdate()
     {
         transform.localPosition = _camBehaviour.GetPosition(transform.localPosition);
         transform.rotation = _camBehaviour.GetRotation(transform);
+        Camera.main.fieldOfView = _camBehaviour.GetFoV(Camera.main.fieldOfView);
     }
 }

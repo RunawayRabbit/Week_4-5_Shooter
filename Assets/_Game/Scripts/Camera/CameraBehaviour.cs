@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CameraBehaviour
+public abstract class CameraBehaviour : ICameraBehaviour
 {
     protected Vector3 displacement = default;
     protected float rotateSpeed = 3.0f;
@@ -12,20 +12,21 @@ public abstract class CameraBehaviour
     protected List<GameObject> _lookTargets;
     protected Vector3 _velocity;
 
-    public CameraBehaviour(CamBehaviourData camData, GameObject followTarget, GameObject lookTarget)
+    public CameraBehaviour(CamAttributes camData, GameObject followTarget, GameObject lookTarget)
     {
         displacement = camData.displacement;
         rotateSpeed = camData.rotateSpeed;
         smoothTime = camData.smoothTime;
         tiltAmount = camData.tiltAmount;
-        
+
         _followTargets = new List<GameObject>();
         _lookTargets = new List<GameObject>();
-        
+
         _followTargets.Add(followTarget);
         _lookTargets.Add(lookTarget);
     }
-    public CameraBehaviour(CamBehaviourData camData, List<GameObject> followTargets, List<GameObject> lookTargets)
+
+    public CameraBehaviour(CamAttributes camData, List<GameObject> followTargets, List<GameObject> lookTargets)
     {
         displacement = camData.displacement;
         rotateSpeed = camData.rotateSpeed;
@@ -38,8 +39,9 @@ public abstract class CameraBehaviour
 
     public abstract Vector3 GetPosition(Vector3 inPosition);
 
-
     public abstract Quaternion GetRotation(Transform transform);
+
+    public abstract float GetFoV(float mainFieldOfView);
 
     protected Vector3 AggregateTargets(List<GameObject> targets)
     {
@@ -52,6 +54,4 @@ public abstract class CameraBehaviour
 
         return bounds.center;
     }
-
-
 }

@@ -22,10 +22,11 @@
           </e>
           <e p="Scripts" t="Include">
             <e p="Camera" t="Include">
-              <e p="CamBehaviourData.cs" t="Include" />
+              <e p="CamAttributes.cs" t="Include" />
               <e p="CameraBehaviour.cs" t="Include" />
+              <e p="CameraController.cs" t="Include" />
               <e p="CameraTransition.cs" t="Include" />
-              <e p="FollowCam.cs" t="Include" />
+              <e p="ICameraBehaviour.cs" t="Include" />
               <e p="OverShoulderCam.cs" t="Include" />
             </e>
             <e p="ProjectileWeapon.cs" t="Include" />

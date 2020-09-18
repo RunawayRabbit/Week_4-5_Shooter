@@ -1,28 +1,54 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class OverShoulderCam : CameraBehaviour
+public class OverShoulderCam : ICameraBehaviour
 {
-    public OverShoulderCam(CamBehaviourData camData, GameObject followTarget, GameObject lookTarget) : base(camData,
-        followTarget, lookTarget) { }
+    private List<GameObject> _followTargets;
+    private List<GameObject> _lookTargets;
 
-    public OverShoulderCam(CamBehaviourData camData, List<GameObject> followTargets, List<GameObject> lookTargets) : base(camData, followTargets, lookTargets) {}
-
-    override public Quaternion GetRotation(Transform inTransform)
+    private CamAttributes _attribs;
+    
+    protected Vector3 _velocity;
+    
+    public OverShoulderCam(ref CamAttributes camAttribs, GameObject followTarget, GameObject lookTarget)
     {
-        Vector3 lookPosition = base.AggregateTargets(_lookTargets);
+        _attribs = camAttribs;
+        _followTargets = new List<GameObject> {followTarget};
+        _lookTargets = new List<GameObject> {lookTarget};
+    }
+   
+    public Quaternion GetRotation(Transform inTransform)
+    {
+        Vector3 lookPosition = AggregateTargets(_lookTargets);
         
         float lateralVelocity = Vector3.Dot(_velocity, inTransform.right);
-        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * tiltAmount, Vector3.forward);
+        Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * _attribs.tiltAmount, Vector3.forward);
         Quaternion newRotation = tilt * Quaternion.LookRotation(lookPosition - inTransform.localPosition);
-        return Quaternion.RotateTowards(inTransform.rotation, newRotation, rotateSpeed);
+        return Quaternion.RotateTowards(inTransform.rotation, newRotation, _attribs.rotateSpeed);
     }
-    public override Vector3 GetPosition(Vector3 inPosition)
+
+    public float GetFoV(float currentFoV)
+    {
+        return 50.0f;
+    }
+
+    public Vector3 GetPosition(Vector3 inPosition)
     {
         Vector3 followTarget = AggregateTargets(_followTargets);
     
-        Vector3 newPosition = followTarget + displacement;
-        return Vector3.SmoothDamp(inPosition, newPosition, ref _velocity, smoothTime);
+        Vector3 newPosition = followTarget + _attribs.displacement;
+        return Vector3.SmoothDamp(inPosition, newPosition, ref _velocity, _attribs.smoothTime);
+    }
+    
+    private Vector3 AggregateTargets(List<GameObject> targets)
+    {
+        if (targets.Count == 1)
+            return targets[0].transform.localPosition;
+
+        var bounds = new Bounds();
+        foreach (var target in targets)
+            bounds.Encapsulate(target.transform.localPosition);
+
+        return bounds.center;
     }
 }
