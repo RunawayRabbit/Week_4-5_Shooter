@@ -21,7 +21,7 @@
             <e p="Editor" t="Include">
               <e p="ArenaEditor.cs" t="Include" />
               <e p="PlayerShipEditor.cs" t="Include" />
-              <e p="WeaponSlotEditor.cs" t="Include" />
+              <e p="PlayerWeaponSlotEditor.cs" t="Include" />
             </e>
             <e p="Enemy.cs" t="Include" />
             <e p="IDamageable.cs" t="Include" />
@@ -35,6 +35,7 @@
             <e p="Weapons" t="Include">
               <e p="LaserShot.cs" t="Include" />
               <e p="LaserWeapon.cs" t="Include" />
+              <e p="PlayerWeaponSlot.cs" t="Include" />
               <e p="ProjectileWeapon.cs" t="Include" />
               <e p="SimpleBullet.cs" t="Include" />
               <e p="Weapon.cs" t="Include" />
