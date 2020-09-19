@@ -16,8 +16,8 @@ public class WeaponSlot : MonoBehaviour
     private int _powerUpLayer;
 
     private bool _hasWeaponAttached = false;
-    [SerializeField] private Vector3 minRotation = Vector3.forward;
-    [SerializeField] public Vector3 maxRotation;
+    [HideInInspector] public Vector3 minRotation = Vector3.forward;
+    [HideInInspector] public Vector3 maxRotation = Vector3.forward;
     [SerializeField] public float turningArc;
 
     [SerializeField] private GameObject startingWeapon = default;

@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     {
         _arena = arena.GetComponent<Arena>();
         Debug.Assert(_arena, $"{gameObject.name} can't find the Arena! Did you forget to set a reference to it?");
-        _arena.OnModeChange += ArenaOnOnModeChange;
+        _arena.OnModeChange += OnModeChange;
         
         Debug.Assert(playerShip, $"{gameObject.name} has no reference to the player ship!");
         Debug.Assert(targetReticle, $"{gameObject.name} has no reference to the target reticle!");
@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour
         _camBehaviour = new OverShoulderCam(ref topDownAttribs);
     }
 
-    private void ArenaOnOnModeChange(Arena.Mode mode)
+    private void OnModeChange(Arena.Mode mode)
     {
         if (mode == Arena.Mode.Horizontal)
             _camBehaviour.Attribs = topDownAttribs;

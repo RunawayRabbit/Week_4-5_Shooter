@@ -3,8 +3,8 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-[CustomEditor(typeof(WeaponSlot))]
-public class WeaponSlotEditor : Editor
+[CustomEditor(typeof(PlayerWeaponSlot))]
+public class PlayerWeaponSlotEditor : Editor
 {
     private ArcHandle _arcHandle = new ArcHandle();
 
