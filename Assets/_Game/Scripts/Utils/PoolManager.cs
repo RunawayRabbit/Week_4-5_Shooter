@@ -5,18 +5,19 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     public static PoolManager Instance;
-    [SerializeField] private List<GameObjectPool> poolDefinitions = default; 
+    [SerializeField] private GameObjectPool[] poolDefinitions = default; 
     [SerializeField] private List<GameObject>[] pools; 
 
     private void Awake()
     {
         Instance = this;
-        pools = new List<GameObject>[poolDefinitions.Count];
+        poolDefinitions = Resources.LoadAll<GameObjectPool>("ObjectPools");
+        pools = new List<GameObject>[poolDefinitions.Length];
     }
 
     private void Start()
     {
-        for (int i = 0; i < poolDefinitions.Count; i++)
+        for (int i = 0; i < poolDefinitions.Length; i++)
         {
             var poolDefinition = poolDefinitions[i];
             
@@ -56,7 +57,7 @@ public class PoolManager : MonoBehaviour
     private int GetPoolFromString(string poolName)
     {
         Hash128 hashedPoolName = Hash128.Compute(poolName);
-        for (int i = 0; i < poolDefinitions.Count; i++)
+        for (int i = 0; i < poolDefinitions.Length; i++)
         {
             if (hashedPoolName == poolDefinitions[i].HashedName) return i;
         }
