@@ -15,7 +15,7 @@ public class PlayerShip : MonoBehaviour
 
     private bool _locked;
 
-    public WeaponSlot[] weaponSlots;
+    public PlayerWeaponSlot[] weaponSlots;
     private Vector3 _input3D;
 
     private void Start()

@@ -11,7 +11,7 @@ public class PlayerWeaponSlotEditor : Editor
     private void OnEnable()
     {
         _arcHandle.SetColorWithRadiusHandle(Color.yellow, 0.12f);
-        _arcHandle.angle = ((WeaponSlot) target).turningArc;
+        _arcHandle.angle = ((PlayerWeaponSlot) target).turningArc;
         _arcHandle.radius = 1.0f;
         _arcHandle.angleHandleColor = Color.green;
         _arcHandle.radiusHandleColor = default;
@@ -19,7 +19,7 @@ public class PlayerWeaponSlotEditor : Editor
 
     public void OnSceneGUI()
     {
-        var weaponSlot = (WeaponSlot) target;
+        var weaponSlot = (PlayerWeaponSlot) target;
         var transform = weaponSlot.transform;
 
         Vector3 handleDirection = transform.forward;
@@ -45,8 +45,8 @@ public class PlayerWeaponSlotEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        _arcHandle.angle = ((WeaponSlot) target).turningArc;
-        ResetMaxRotation((WeaponSlot) target, ((WeaponSlot) target).turningArc);
+        _arcHandle.angle = ((PlayerWeaponSlot) target).turningArc;
+        ResetMaxRotation((PlayerWeaponSlot) target, ((PlayerWeaponSlot) target).turningArc);
     }
 
     private void ResetMaxRotation(WeaponSlot weaponSlot, float degrees)
