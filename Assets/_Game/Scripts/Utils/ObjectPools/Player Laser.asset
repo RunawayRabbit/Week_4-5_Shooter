@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6e71823e9e42ad936add2da04f8d08, type: 3}
   m_Name: Player Laser
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  maxCount: 0
+  prefab: {fileID: 8688187427775985961, guid: 5944ed64d8a57d140850fec2b16b2142, type: 3}
+  maxCount: 10

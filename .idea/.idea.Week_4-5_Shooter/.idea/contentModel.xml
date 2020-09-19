@@ -33,6 +33,7 @@
               <e p="PoolManager.cs" t="Include" />
             </e>
             <e p="Weapons" t="Include">
+              <e p="LaserShot.cs" t="Include" />
               <e p="LaserWeapon.cs" t="Include" />
               <e p="ProjectileWeapon.cs" t="Include" />
               <e p="SimpleBullet.cs" t="Include" />

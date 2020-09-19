@@ -527,12 +527,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   emitter: {fileID: 5641217890680660311}
-  fireRate: 1.1
+  fireRate: 0.6
   maxRange: 50
   damagePerShot: 3
+  laserRenderTime: 0.25
   thingsWeHit:
     serializedVersion: 2
     m_Bits: 263168
+  bouncy: 1
 --- !u!1 &8054458357250452015
 GameObject:
   m_ObjectHideFlags: 0

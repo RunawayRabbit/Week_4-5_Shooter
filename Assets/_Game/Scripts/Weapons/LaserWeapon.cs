@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 internal class LaserWeapon : Weapon
@@ -7,6 +8,7 @@ internal class LaserWeapon : Weapon
     [SerializeField] private float fireRate = 0.8f;
     [SerializeField] private float maxRange = 50.0f;
     [SerializeField] private int damagePerShot = 5;
+    [SerializeField] private float laserRenderTime = 0.3f;
     [SerializeField] private LayerMask thingsWeHit = 0;
     [SerializeField] private bool bouncy = true;
 
@@ -34,23 +36,50 @@ internal class LaserWeapon : Weapon
     private void ShootLaser(Vector3 origin, Vector3 direction, float distanceToCast)
     {
         Ray ray = new Ray(origin, direction);
+        float bounceMinHitDistance = Single.PositiveInfinity;
+        Vector3 bounceNormal = default;
+        Vector3 bouncePoint = default;
         RaycastHit[] hits = Physics.RaycastAll(ray, distanceToCast, thingsWeHit, QueryTriggerInteraction.Ignore);
         foreach (var hit in hits)
         {
             if (bouncy && hit.collider.gameObject.layer == LayerMask.NameToLayer("LaserBouncer"))
             {
-                DrawLaser(origin, direction, hit.distance);
-                Debug.Log($"We hit {hit.collider.name} Let's bounce!");
-                ShootLaser(hit.point, Vector3.Reflect(direction, hit.normal), distanceToCast - hit.distance);
+                if(hit.distance < bounceMinHitDistance)
+                {
+                    bounceMinHitDistance = hit.distance;
+                    bounceNormal = hit.normal;
+                    bouncePoint = hit.point;
+                }
             }
                 
             if(hit.collider.TryGetComponent<IDamageable>(out var damageable))
                 damageable.TakeDamage(damagePerShot);
         }
+
+        if (bounceMinHitDistance < distanceToCast)
+        {
+            DrawLaser(origin, direction, bounceMinHitDistance);
+            ShootLaser(bouncePoint, Vector3.Reflect(direction, bounceNormal), distanceToCast - bounceMinHitDistance);
+        }
+        else
+        {
+            DrawLaser(origin, direction, distanceToCast);            
+        }
     }
 
     private void DrawLaser(Vector3 origin, Vector3 direction, float hitDistance)
     {
-        PoolManager.Instance.Get("Laser");
+        var laser = PoolManager.Instance.Get("Laser");
+        if (laser)
+        {
+            var lineRenderer = laser.GetComponent<LineRenderer>();
+            var laserShotComponent = laser.GetComponent<LaserShot>();
+            laserShotComponent.lifetime = laserRenderTime;
+            lineRenderer.SetPosition(0, origin);
+
+            var endPoint = origin + (direction * hitDistance);
+            lineRenderer.SetPosition(1, endPoint);
+            laser.SetActive(true);     
+        }
     }
 }
