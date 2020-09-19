@@ -1454,7 +1454,10 @@ MonoBehaviour:
   _moveSpeed: 12
   overShoulderLag: 0.27
   weaponRotateThresholdVelocity: 0.333
-  weaponSlots: []
+  weaponSlots:
+  - {fileID: 870842062}
+  - {fileID: 1181036968}
+  - {fileID: 1648869995}
 --- !u!1 &1481021545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,9 +2147,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1993046333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b0948e814576ca41b2dd1cc45b8ede5, type: 3}
+  m_Script: {fileID: 11500000, guid: c21e097d6b7ec8e48b33fd1a2402a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHp: 10
 --- !u!1 &2119514340
 GameObject:
   m_ObjectHideFlags: 0

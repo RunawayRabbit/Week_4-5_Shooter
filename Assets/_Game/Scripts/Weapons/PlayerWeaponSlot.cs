@@ -1,7 +1,6 @@
 ﻿
 using UnityEngine;
 
-
 [RequireComponent(typeof(Collider)), SelectionBase]
 public class PlayerWeaponSlot : WeaponSlot
 {
@@ -56,7 +55,12 @@ public class PlayerWeaponSlot : WeaponSlot
         if (other.gameObject.layer == _powerUpLayer &&
             other.gameObject.TryGetComponent<WeaponPowerUp>(out var powerUp))
         {
-            EquipWeapon(powerUp.weaponPrefab);
+            // This prevents multiple WeaponSlots from taking the same powerup in the same frame.
+            if (powerUp.active)
+            {
+                powerUp.active = false;
+                EquipWeapon(powerUp.weaponPrefab);
+            }
         }
     }
 
