@@ -4,7 +4,7 @@ using UnityEngine;
 internal class ProjectileWeapon : Weapon
 {
     private Coroutine _shootingCoroutine;
-    private Pool _bulletPool;
+    private PoolManager _bulletPoolManager;
     
     [SerializeField] protected float fireRate = 0.3f;
     private GameObject _bulletPrefab;
@@ -24,7 +24,7 @@ internal class ProjectileWeapon : Weapon
         while (true)
         {
             // Fire a bullet!
-            var bullet =  Pool.Instance.Get();
+            var bullet =  PoolManager.Instance.Get("Bullet");
             if (bullet)
             {
                 var trans = transform;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CamAttributes", menuName = "Scriptables/Camera Behaviour attributes", order = 0)]
+[CreateAssetMenu(fileName = "CamAttributes", menuName = "Scriptables/Camera Behaviour", order = 0)]
 public class CamAttributes : ScriptableObject
 {
     public Vector3 displacement = default;

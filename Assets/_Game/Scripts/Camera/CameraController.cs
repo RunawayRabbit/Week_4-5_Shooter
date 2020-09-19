@@ -8,8 +8,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject arena = default;
     private ICameraBehaviour _camBehaviour;
 
-    [SerializeField] private CamAttributes overShoulderAttribs;
-    [SerializeField] private CamAttributes topDownAttribs;
+    [SerializeField] private CamAttributes overShoulderAttribs = default;
+    [SerializeField] private CamAttributes topDownAttribs = default;
     
     private Arena _arena;
     private Vector3 _velocity;

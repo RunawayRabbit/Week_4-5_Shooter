@@ -10,7 +10,6 @@ public class SimpleBullet : MonoBehaviour
     [SerializeField] float lifetime = 10.0f;
 
     private Coroutine _lifetimeTracker;
-    public Pool pool;
 
     private void Awake()
     {
@@ -34,7 +33,7 @@ public class SimpleBullet : MonoBehaviour
     public IEnumerator DeathClock()
     {
         yield return new WaitForSeconds(lifetime);
-        pool.Return(gameObject);
+        PoolManager.Instance.Return(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)

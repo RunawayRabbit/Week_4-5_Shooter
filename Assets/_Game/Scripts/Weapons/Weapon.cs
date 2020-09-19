@@ -11,15 +11,10 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected bool _isShooting;
-    [SerializeField] private InputActionReference shootReference;
+    [SerializeField] private InputActionReference shootReference = default;
     
     public abstract void StartShooting();
     public abstract void StopShooting();
-    public void Decomission()
-    {
-        Debug.Log("Weapon is being decomissioned");
-        Destroy(gameObject);
-    }
     
     private void Awake()
     {
@@ -28,9 +23,16 @@ public abstract class Weapon : MonoBehaviour
         if (shootReference.action.phase == InputActionPhase.Started)
             StartShooting();
     }
-
+    
     private void OnDisable()
     {
         if (_isShooting) StopShooting();
     }
+    
+    public void Decomission()
+    {
+        Debug.Log("Weapon is being decomissioned");
+        Destroy(gameObject);
+    }
+    
 }

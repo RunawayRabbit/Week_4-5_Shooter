@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 970998618}
   - component: {fileID: 970998617}
   - component: {fileID: 970998616}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: LaserBounceTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1327,9 +1327,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da37093e46a25a4082753c0c064e515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObjects: []
-  prefab: {fileID: 4639389982959027063, guid: ccb512b0d1218434d8080e2439793b21, type: 3}
-  maxCount: 65
+  poolDefinitions:
+  - {fileID: 11400000, guid: e9563d68d4cb6f2429c4866f740b79f8, type: 2}
+  - {fileID: 11400000, guid: be5fc148b12798d40878d8c84c5144c6, type: 2}
+--- !u!1 &1636673237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636673238}
+  m_Layer: 0
+  m_Name: Laser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1636673238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636673237}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.41, y: 0, z: -9.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1648869993
 GameObject:
   m_ObjectHideFlags: 0
