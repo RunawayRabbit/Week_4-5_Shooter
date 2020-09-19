@@ -2,7 +2,7 @@
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int startingHp = 10; 
+    [SerializeField] private int startingHp = 10;
     public int HP { get; private set; }
 
     private void Awake()

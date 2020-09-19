@@ -4,11 +4,8 @@ using UnityEngine;
 internal class ProjectileWeapon : Weapon
 {
     private Coroutine _shootingCoroutine;
-    private PoolManager _bulletPoolManager;
-    
     [SerializeField] protected float fireRate = 0.3f;
-    private GameObject _bulletPrefab;
-    
+
     public override void StartShooting()
     {
         _shootingCoroutine = StartCoroutine(Shoot());
