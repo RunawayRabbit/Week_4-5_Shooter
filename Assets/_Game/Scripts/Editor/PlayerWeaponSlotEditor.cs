@@ -49,7 +49,7 @@ public class PlayerWeaponSlotEditor : Editor
         ResetMaxRotation((PlayerWeaponSlot) target, ((PlayerWeaponSlot) target).turningArc);
     }
 
-    private void ResetMaxRotation(WeaponSlot weaponSlot, float degrees)
+    private void ResetMaxRotation(PlayerWeaponSlot weaponSlot, float degrees)
     {
         var newAngle = degrees * Mathf.Deg2Rad;
         weaponSlot.maxRotation = new Vector3(Mathf.Sin(newAngle), 0.0f, Mathf.Cos(newAngle));

@@ -3,14 +3,13 @@
 public class WeaponSlot : MonoBehaviour
 {
     //@TODO: PRETTIFY THE INSPECTOR WITH HEADERS, RANGES AND SO ON
-    protected GameObject WeaponObject;
-    protected Weapon CurrentWeapon;
+    [SerializeField] private GameObject startingWeapon = default;
+
+    protected GameObject WeaponObject = default;
+    protected Weapon CurrentWeapon = default;
 
     protected bool HasWeaponAttached = false;
-    [HideInInspector] public Vector3 minRotation = Vector3.forward;
-    [HideInInspector] public Vector3 maxRotation = Vector3.forward;
 
-    [SerializeField] private GameObject startingWeapon = default;
     
     public void StartShooting()
     {

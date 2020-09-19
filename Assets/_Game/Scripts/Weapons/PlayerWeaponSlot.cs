@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider)), SelectionBase]
@@ -13,7 +14,9 @@ public class PlayerWeaponSlot : WeaponSlot
     private float _arcWindingDirection = default;
     
     [SerializeField] public float turningArc;
-    
+    /*[HideInInspector] */public Vector3 minRotation = Vector3.forward;
+    /*[HideInInspector] */public Vector3 maxRotation;
+
     // @TODO: Really think about weapon destruction! Does it make the game better? Is it worth pursuing?
     //[SerializeField] private float colliderRadiusWhileEmpty = 2.0f;
     [SerializeField] private float colliderRadiusWhileActive = 1.0f;
@@ -91,8 +94,8 @@ public class PlayerWeaponSlot : WeaponSlot
         float minToInputWinding = Vector3.Dot(Vector3.Cross(minRotation, input), Vector3.up);
         float maxToInputWinding = Vector3.Dot(Vector3.Cross(maxRotation, input), Vector3.up);
 
-        bool isMinToInputSameWinding = Mathf.Sign(_arcWindingDirection) == Mathf.Sign(minToInputWinding);
-        bool isMaxToInputSameWinding = Mathf.Sign(_arcWindingDirection) == Mathf.Sign(maxToInputWinding);
+        bool isMinToInputSameWinding = Mathf.Sign(_arcWindingDirection) == Math.Sign(minToInputWinding);
+        bool isMaxToInputSameWinding = Mathf.Sign(_arcWindingDirection) == Math.Sign(maxToInputWinding);
 
         if (!isMinToInputSameWinding && !isMaxToInputSameWinding) return maxRotation;
         return minRotation;
