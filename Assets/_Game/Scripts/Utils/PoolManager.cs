@@ -13,17 +13,12 @@ public class PoolManager : MonoBehaviour
         Instance = this;
         poolDefinitions = Resources.LoadAll<GameObjectPool>("ObjectPools");
         pools = new List<GameObject>[poolDefinitions.Length];
-    }
 
-    private void Start()
-    {
         for (int i = 0; i < poolDefinitions.Length; i++)
         {
             var poolDefinition = poolDefinitions[i];
             
             poolDefinition.HashedName = Hash128.Compute(poolDefinition.prefab.name);
-            Debug.Log($"Pool Created: {poolDefinition.prefab.name}");
-            
             pools[i] = new List<GameObject>(poolDefinition.maxCount);
             var pool = pools[i];
             for (int j = 0; j < poolDefinition.maxCount; j++)

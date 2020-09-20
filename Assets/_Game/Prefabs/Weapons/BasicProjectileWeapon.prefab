@@ -106,10 +106,9 @@ GameObject:
   - component: {fileID: 4147360996744539373}
   - component: {fileID: 4683269179743291737}
   - component: {fileID: 5416456222418547504}
-  - component: {fileID: 2532552368727539722}
   - component: {fileID: 9110094503624809663}
   m_Layer: 8
-  m_Name: DebugWeapon
+  m_Name: BasicProjectileWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,19 +178,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2532552368727539722
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5992139387392019244}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9110094503624809663
 MonoBehaviour:
   m_ObjectHideFlags: 0

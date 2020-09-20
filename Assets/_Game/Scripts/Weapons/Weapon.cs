@@ -34,5 +34,4 @@ public abstract class Weapon : MonoBehaviour
         Debug.Log("Weapon is being decomissioned");
         Destroy(gameObject);
     }
-    
 }

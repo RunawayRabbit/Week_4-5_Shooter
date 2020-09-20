@@ -33,6 +33,7 @@ public class WeaponSlot : MonoBehaviour
             CurrentWeapon.Decomission();
 
         WeaponObject = Instantiate(weaponPrefab, gameObject.transform);
+        WeaponObject.layer = gameObject.layer;
         CurrentWeapon = WeaponObject.GetComponent<Weapon>();
         if (!CurrentWeapon)
             Debug.LogWarning($"{this.name} loaded a prefab {gameObject.name}, but the prefab had no weapon component!");

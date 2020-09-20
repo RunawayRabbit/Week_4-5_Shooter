@@ -10,8 +10,10 @@ public class PlayerWeaponSlotEditor : Editor
 
     private void OnEnable()
     {
+        if (!target) return;
+        var playerWeaponSlot = (PlayerWeaponSlot) target;
         _arcHandle.SetColorWithRadiusHandle(Color.yellow, 0.12f);
-        _arcHandle.angle = ((PlayerWeaponSlot) target).turningArc;
+        _arcHandle.angle = playerWeaponSlot.turningArc;
         _arcHandle.radius = 1.0f;
         _arcHandle.angleHandleColor = Color.green;
         _arcHandle.radiusHandleColor = default;
