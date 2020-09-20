@@ -84,4 +84,9 @@ public class PlayerWeaponSlot : WeaponSlot
         if (!isMinToInputSameWinding && !isMaxToInputSameWinding) return maxRotation;
         return minRotation;
     }
+
+    public void StopRotation()
+    {
+        _targetVector = transform.forward;
+    }
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
-  rotateSpeed: 50
+  rotateSpeed: 65
   turningArc: -35
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: -0.57357645, y: 0, z: 0.81915206}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
-  rotateSpeed: 50
+  rotateSpeed: 65
   turningArc: 35
   minRotation: {x: 0, y: 0, z: 1}
   maxRotation: {x: 0.57357645, y: 0, z: 0.81915206}
@@ -276,6 +276,7 @@ MonoBehaviour:
   _moveSpeed: 12
   overShoulderLag: 0.27
   weaponRotateThresholdVelocity: 0.333
+  maxHp: 30
   weaponSlots:
   - {fileID: 7746700581155348728}
   - {fileID: 7746700583092973470}
