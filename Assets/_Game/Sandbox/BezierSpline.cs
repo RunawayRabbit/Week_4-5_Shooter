@@ -25,7 +25,7 @@ public class BezierSpline : MonoBehaviour
        return transform.TransformPoint(GetPoint(t));
     }
 
-    private Vector3 GetPoint(float t)
+    public Vector3 GetPoint(float t)
     {
         t = t * anchorPoints.Length;
         if (t < 0.0f) t = 0.0f;
