@@ -20,7 +20,7 @@ public class EnemyPath : MonoBehaviour
     }
 #endif
 
-    private void CalculatePoints()
+    public void CalculatePoints()
     {
         MakeControlPoints();
         MakeAnchorPoints();
