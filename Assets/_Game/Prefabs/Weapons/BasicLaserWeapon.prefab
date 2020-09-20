@@ -530,7 +530,7 @@ MonoBehaviour:
   fireRate: 0.6
   maxRange: 50
   damagePerShot: 3
-  laserRenderTime: 0.25
+  laserRenderTime: 0.3
   thingsWeHit:
     serializedVersion: 2
     m_Bits: 263168
