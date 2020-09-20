@@ -5,6 +5,7 @@ internal class ProjectileWeapon : Weapon
 {
     private Coroutine _shootingCoroutine;
     [SerializeField] protected float fireRate = 0.3f;
+    [SerializeField, Layer] protected int projectileLayer;
 
     public override void StartShooting()
     {
@@ -27,6 +28,7 @@ internal class ProjectileWeapon : Weapon
                 var trans = transform;
                 bullet.transform.position = trans.position;
                 bullet.transform.rotation = trans.rotation;
+                if(projectileLayer != 0) bullet.gameObject.layer = projectileLayer;
                 bullet.SetActive(true);
             }
             
