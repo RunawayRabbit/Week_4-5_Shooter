@@ -1,19 +1,24 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [CustomEditor(typeof(EnemyPath))]
 public class EnemyPathEditor : Editor
 {
+    private EnemyPath _path;
+    private Transform _targetTransform;
+    private Quaternion _handleRotation;
+
     private void OnSceneGUI()
     {
-        EnemyPath path = (EnemyPath) target;
-        Transform targetTransform = path.transform;
-        Quaternion handleRotation = Tools.pivotRotation == PivotRotation.Local ?
-            targetTransform.rotation : Quaternion.identity;
+        _path = (EnemyPath) target;
+        _targetTransform = _path.transform;
+        _handleRotation = Tools.pivotRotation == PivotRotation.Local ?
+            _targetTransform.rotation : Quaternion.identity;
         
-        for (int i = 0; i < path.points.Length; i++)
+        for (int i = 0; i < _path.points.Length; i++)
         {
-            Vector3 worldSpacePoint = path.transform.TransformPoint(path.points[i]);
+            Vector3 worldSpacePoint = _targetTransform.TransformPoint(_path.points[i]);
             
             var style = new GUIStyle();
             style.fontStyle = FontStyle.Bold;
@@ -24,31 +29,32 @@ public class EnemyPathEditor : Editor
             
             EditorGUI.BeginChangeCheck();
             
-            var newPoint = Handles.DoPositionHandle(worldSpacePoint,handleRotation);
+            var newPoint = Handles.DoPositionHandle(worldSpacePoint,_handleRotation);
             //Handles.SphereHandleCap(0, worldSpacePoint, Quaternion.identity, 0.03f, EventType.Repaint);
             
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(path, "Moved EnemyPath Point");
-                EditorUtility.SetDirty(path);
-                path.points[i] = targetTransform.InverseTransformPoint(newPoint);
-                path.CalculatePoints();
+                Undo.RecordObject(_path, "Moved EnemyPath Point");
+                EditorUtility.SetDirty(_path);
+                _path.points[i] = _targetTransform.InverseTransformPoint(newPoint);
+                _path.CalculatePoints();
             }
         }
+        DrawBezierCurve();
+    }
 
-        
-        Handles.color = Color.blue;
-        foreach (var point in path.controlPoints)
+    private void DrawBezierCurve()
+    {
+        for (int i = 0, j = 0;
+            i < _path.anchorPoints.Length -1 ;
+            i++, j +=  2)
         {
-            Handles.SphereHandleCap(0, path.transform.TransformPoint(point),
-                Quaternion.identity, 0.02f, EventType.Repaint);
-        }
-        
-        Handles.color = Color.green;
-        foreach (var point in path.anchorPoints)
-        {
-            Handles.SphereHandleCap(0, path.transform.TransformPoint(point),
-                Quaternion.identity, 0.02f, EventType.Repaint);
+            Handles.DrawBezier(
+                _targetTransform.TransformPoint(_path.anchorPoints[i]), 
+                _targetTransform.TransformPoint(_path.anchorPoints[i + 1]),
+                _targetTransform.TransformPoint(_path.controlPoints[j]), 
+                _targetTransform.TransformPoint(_path.controlPoints[j + 1]),
+                Color.white, Texture2D.whiteTexture, 2.5f);
         }
     }
 }

@@ -20,6 +20,31 @@ public class EnemyPath : MonoBehaviour
     }
 #endif
 
+    public Vector3 GetWorldPoint(float t)
+    {
+       return transform.TransformPoint(GetPoint(t));
+    }
+
+    private Vector3 GetPoint(float f)
+    {
+        //@TODO: Implement.
+        Debug.Assert(false, "We didn't write this yet.");
+        return Vector3.zero;
+    }
+
+    public Vector3 GetPointOnSegment(float t)
+    {
+        t = Mathf.Clamp01(t);
+        float oneMinusT = 1f - t;
+
+        Vector3 startContribution = oneMinusT * oneMinusT * oneMinusT * anchorPoints[0];
+        Vector3 ctrlOneContribution = 3.0f * oneMinusT * oneMinusT * t * controlPoints[0];
+        Vector3 ctrlTwoContribution = 3.0f * oneMinusT * t * t * controlPoints[1];
+        Vector3 endContribution = t * t * t * anchorPoints[1];
+
+        return startContribution + ctrlOneContribution + ctrlTwoContribution + endContribution;
+    }
+    
     public void CalculatePoints()
     {
         MakeControlPoints();
@@ -36,6 +61,7 @@ public class EnemyPath : MonoBehaviour
         else 
             controlPoints = new Vector3[(points.Length - 1) * 2];
 
+        //@TODO: Uncomplexify this shitty loop.
         for (int i = 0,  j = 0;
             i < points.Length-1;
             i++, j += 2)
@@ -77,7 +103,7 @@ public class EnemyPath : MonoBehaviour
             anchorPoints[0] = points[0];
             anchorPoints[anchorPoints.Length - 1] = points[points.Length - 1];
         }
-
+        //@TODO: Uncomplexify this shitty loop too.
         for (int i = 1, j = 1;
             i < anchorPoints.Length - 1;
             i++, j+=2)
