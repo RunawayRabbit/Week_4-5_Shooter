@@ -70,9 +70,8 @@ public class BezierSpline : MonoBehaviour
         else 
             controlPoints = new Vector3[(points.Length - 1) * 2];
 
-        //@TODO: Uncomplexify this shitty loop.
         for (int i = 0,  j = 0;
-            i < points.Length-1;
+            i < points.Length - 1;
             i++, j += 2)
         {
             Vector3 delta = points[i + 1] - points[i];
@@ -104,7 +103,6 @@ public class BezierSpline : MonoBehaviour
             anchorPoints[0] =
                 (controlPoints[0] + controlPoints[controlPoints.Length - 1]) * oneHalf;
             
-            // @TODO: Hacky solution, probably can be improved..
             anchorPoints[anchorPoints.Length - 1] = anchorPoints[0];
         }
         else
@@ -112,7 +110,6 @@ public class BezierSpline : MonoBehaviour
             anchorPoints[0] = points[0];
             anchorPoints[anchorPoints.Length - 1] = points[points.Length - 1];
         }
-        //@TODO: Uncomplexify this shitty loop too.
         for (int i = 1, j = 1;
             i < anchorPoints.Length - 1;
             i++, j+=2)

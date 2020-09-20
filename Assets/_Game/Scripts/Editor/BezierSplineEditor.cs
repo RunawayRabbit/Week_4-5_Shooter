@@ -29,8 +29,7 @@ public class BezierSplineEditor : Editor
             EditorGUI.BeginChangeCheck();
             
             var newPoint = Handles.DoPositionHandle(worldSpacePoint,_handleRotation);
-            //Handles.SphereHandleCap(0, worldSpacePoint, Quaternion.identity, 0.03f, EventType.Repaint);
-            
+
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(_path, "Moved EnemyPath Point");
