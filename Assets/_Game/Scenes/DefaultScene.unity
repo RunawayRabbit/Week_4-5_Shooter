@@ -156,7 +156,7 @@ MonoBehaviour:
   - {x: 0.29, y: 1.08, z: 0}
   - {x: 0.55898476, y: 0.23345554, z: 0.2933526}
   - {x: 1.3728971, y: 0.60000026, z: 0.25036097}
-  - {x: 2.3368683, y: 0.12887561, z: -0.73637056}
+  - {x: 2.3368683, y: 1.2214974, z: -0.73637056}
   - {x: 0.99188423, y: 1.9758161, z: -0.96295166}
   - {x: -0.3413694, y: 1.1556, z: -11.107969}
   isClosed: 0
@@ -165,18 +165,18 @@ MonoBehaviour:
   - {x: 0.46932316, y: 0.51563704, z: 0.19556841}
   - {x: 0.8302889, y: 0.35563713, z: 0.27902207}
   - {x: 1.101593, y: 0.4778187, z: 0.2646915}
-  - {x: 1.6942209, y: 0.4429587, z: -0.078549564}
-  - {x: 2.0155447, y: 0.28591716, z: -0.4074601}
-  - {x: 1.8885403, y: 0.74452245, z: -0.8118976}
-  - {x: 1.4402122, y: 1.3601693, z: -0.88742465}
+  - {x: 1.6942209, y: 0.807166, z: -0.078549564}
+  - {x: 2.0155447, y: 1.0143317, z: -0.4074601}
+  - {x: 1.8885403, y: 1.472937, z: -0.8118976}
+  - {x: 1.4402122, y: 1.7243766, z: -0.88742465}
   - {x: 0.54746634, y: 1.7024107, z: -4.3446245}
   - {x: 0.103048444, y: 1.4290054, z: -7.726297}
   anchorPoints:
   - {x: 0.29, y: 1.08, z: 0}
   - {x: 0.649806, y: 0.4356371, z: 0.23729524}
-  - {x: 1.397907, y: 0.46038872, z: 0.09307097}
-  - {x: 1.9520425, y: 0.5152198, z: -0.60967886}
-  - {x: 0.99383926, y: 1.53129, z: -2.6160245}
+  - {x: 1.397907, y: 0.64249235, z: 0.09307097}
+  - {x: 1.9520425, y: 1.2436343, z: -0.60967886}
+  - {x: 0.99383926, y: 1.7133937, z: -2.6160245}
   - {x: -0.3413694, y: 1.1556, z: -11.107969}
 --- !u!4 &115106868
 Transform:
@@ -1168,8 +1168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolDefinitions:
-  - {fileID: 11400000, guid: c4196b82e11deaf49a6f17c3fb92f273, type: 2}
-  - {fileID: 11400000, guid: f5eda6397b871234292dce2f36ac40cc, type: 2}
+  - {fileID: 11400000, guid: ca618fae5ff844a4991969af54c9b0f1, type: 2}
+  - {fileID: 11400000, guid: b83231c780010864c990537bfded1ef9, type: 2}
+  - {fileID: 11400000, guid: 9c93009a9ccb81f488dfb34d5f197b33, type: 2}
 --- !u!1 &1751816296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,8 +1487,8 @@ MonoBehaviour:
   playerShip: {fileID: 1382232440}
   targetReticle: {fileID: 168575057}
   arena: {fileID: 843084213}
-  overShoulderAttribs: {fileID: 11400000, guid: 8f2e52e582c57c24c9d2f012bff2737d, type: 2}
-  topDownAttribs: {fileID: 11400000, guid: e28efc7951eee05468af3a6f0a94924d, type: 2}
+  overShoulderAttribs: {fileID: 11400000, guid: 75da6989ec3f00940aacf797ed5ceae2, type: 2}
+  topDownAttribs: {fileID: 11400000, guid: c4d99f4927b81af47a9a41b28a88e531, type: 2}
 --- !u!1 &1993046333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,6 +1502,8 @@ GameObject:
   - component: {fileID: 1993046335}
   - component: {fileID: 1993046334}
   - component: {fileID: 1993046338}
+  - component: {fileID: 1993046340}
+  - component: {fileID: 1993046339}
   m_Layer: 10
   m_Name: ShootyBoy
   m_TagString: Untagged
@@ -1598,8 +1601,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e162bb83fcf1cb4585ebc28de706c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHp: 10
+  startingHp: 20
   weaponSlot: {fileID: 1094594372}
+--- !u!114 &1993046339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993046333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d0f6e903814e9b88b290782bc40c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 115106867}
+--- !u!54 &1993046340
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993046333}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &2119514340
 GameObject:
   m_ObjectHideFlags: 0

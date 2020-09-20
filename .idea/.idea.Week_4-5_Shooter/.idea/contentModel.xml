@@ -10,10 +10,10 @@
       <e p="Assets" t="Include">
         <e p="_Game" t="Include">
           <e p="Sandbox" t="Include">
+            <e p="BezierSpline.cs" t="Include" />
             <e p="Editor" t="Include">
-              <e p="EnemyPathEditor.cs" t="Include" />
+              <e p="BezierSplineEditor.cs" t="Include" />
             </e>
-            <e p="EnemyPath.cs" t="Include" />
           </e>
           <e p="Scripts" t="Include">
             <e p="Arena.cs" t="Include" />
@@ -32,6 +32,8 @@
             </e>
             <e p="Enemy" t="Include">
               <e p="Enemy.cs" t="Include" />
+              <e p="IEnemyMover.cs" t="Include" />
+              <e p="MoveAlongBSpline.cs" t="Include" />
               <e p="ShootyBoy.cs" t="Include" />
             </e>
             <e p="IDamageable.cs" t="Include" />
@@ -44,7 +46,7 @@
               <e p="PoolManager.cs" t="Include" />
             </e>
             <e p="Weapons" t="Include">
-              <e p="LaserShot.cs" t="Include" />
+              <e p="LaserVisuals.cs" t="Include" />
               <e p="LaserWeapon.cs" t="Include" />
               <e p="PlayerWeaponSlot.cs" t="Include" />
               <e p="ProjectileWeapon.cs" t="Include" />

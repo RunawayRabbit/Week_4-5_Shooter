@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-public class EnemyPath : MonoBehaviour
+public class BezierSpline : MonoBehaviour
 {
     [SerializeField] public Vector3[] points;
     [SerializeField] public bool isClosed;

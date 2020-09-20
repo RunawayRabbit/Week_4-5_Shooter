@@ -1,16 +1,16 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(EnemyPath))]
-public class EnemyPathEditor : Editor
+[CustomEditor(typeof(BezierSpline))]
+public class BezierSplineEditor : Editor
 {
-    private EnemyPath _path;
+    private BezierSpline _path;
     private Transform _targetTransform;
     private Quaternion _handleRotation;
 
     private void OnSceneGUI()
     {
-        _path = (EnemyPath) target;
+        _path = (BezierSpline) target;
         _targetTransform = _path.transform;
         _handleRotation = Tools.pivotRotation == PivotRotation.Local ?
             _targetTransform.rotation : Quaternion.identity;

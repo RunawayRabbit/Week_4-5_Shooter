@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserShot : MonoBehaviour
+public class LaserVisuals : MonoBehaviour
 {
     public float lifetime = 1.0f;
     [SerializeField] public Color startColor;
