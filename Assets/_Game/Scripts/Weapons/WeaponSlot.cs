@@ -27,7 +27,7 @@ public class WeaponSlot : MonoBehaviour
             EquipWeapon(startingWeapon);
     }
 
-    protected void EquipWeapon(GameObject weaponPrefab)
+    public void EquipWeapon(GameObject weaponPrefab)
     {
         if (HasWeaponAttached)
             CurrentWeapon.Decomission();

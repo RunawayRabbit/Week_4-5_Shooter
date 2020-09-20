@@ -20,15 +20,13 @@ public class PlayerWeaponSlot : WeaponSlot
     // @TODO: Really think about weapon destruction! Does it make the game better? Is it worth pursuing?
     //[SerializeField] private float colliderRadiusWhileEmpty = 2.0f;
     [SerializeField] private float colliderRadiusWhileActive = 1.0f;
-
-    private int _powerUpLayer;
+    
     private void OnEnable() => Arena.Instance.OnModeChange += ChangeMode;
     private void OnDisable() => Arena.Instance.OnModeChange -= ChangeMode;
     private void ChangeMode(Arena.Mode newMode) => _currentMode = newMode;
     
     private void Awake()
     {
-        _powerUpLayer = LayerMask.NameToLayer("Powerup");
         _arcWindingDirection = Vector3.Dot(Vector3.Cross(minRotation, maxRotation), Vector3.up);
         
         _targetReticule = GameObject.FindWithTag("TargetReticule");
@@ -53,20 +51,6 @@ public class PlayerWeaponSlot : WeaponSlot
             rotateSpeed * Time.deltaTime);  
     }
     
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.layer == _powerUpLayer &&
-            other.gameObject.TryGetComponent<WeaponPowerUp>(out var powerUp))
-        {
-            // This prevents multiple WeaponSlots from taking the same powerup in the same frame.
-            if (powerUp.active)
-            {
-                powerUp.active = false;
-                EquipWeapon(powerUp.weaponPrefab);
-            }
-        }
-    }
-
     protected new void EquipWeapon(GameObject weaponPrefab)
     {
         base.EquipWeapon(weaponPrefab);
