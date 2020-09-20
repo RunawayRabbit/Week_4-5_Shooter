@@ -55,6 +55,7 @@ public class BezierSpline : MonoBehaviour
     
     public void CalculatePoints()
     {
+        if (points.Length == 0) return;
         MakeControlPoints();
         MakeAnchorPoints();
     }
