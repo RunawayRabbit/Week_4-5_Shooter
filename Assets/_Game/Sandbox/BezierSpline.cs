@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BezierSpline : MonoBehaviour
 {
-    [SerializeField] public Vector3[] points;
     [SerializeField] public bool isClosed;
+    [SerializeField] public Vector3[] points;
     [HideInInspector] public Vector3[] controlPoints;
     [HideInInspector] public Vector3[] anchorPoints;
 

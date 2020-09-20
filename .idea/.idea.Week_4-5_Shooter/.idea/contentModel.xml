@@ -31,8 +31,8 @@
             <e p="Enemy" t="Include">
               <e p="Enemy.cs" t="Include" />
               <e p="IEnemyMover.cs" t="Include" />
-              <e p="MoveAlongBSpline.cs" t="Include" />
               <e p="ShootyBoy.cs" t="Include" />
+              <e p="SplineFollower.cs" t="Include" />
             </e>
             <e p="IDamageable.cs" t="Include" />
             <e p="PlayerShip.cs" t="Include" />
