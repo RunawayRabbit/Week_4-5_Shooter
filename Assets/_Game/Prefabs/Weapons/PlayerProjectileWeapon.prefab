@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5685048421547027094}
   - component: {fileID: 5775374191413361916}
   - component: {fileID: 3489402485399397779}
-  - component: {fileID: 5070216083340776321}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5070216083340776321
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040051007296316128}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5992139387392019244
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +94,7 @@ GameObject:
   - component: {fileID: 5416456222418547504}
   - component: {fileID: 9110094503624809663}
   m_Layer: 8
-  m_Name: BasicProjectileWeapon
+  m_Name: PlayerProjectileWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,3 +179,4 @@ MonoBehaviour:
   shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   fireRate: 0.15
   projectileLayer: 11
+  bulletPrefab: {fileID: 4639389982959027063, guid: ccb512b0d1218434d8080e2439793b21, type: 3}

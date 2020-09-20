@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5775374191413361916}
   - component: {fileID: 3489402485399397779}
   - component: {fileID: 5070216083340776321}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4683269179743291737}
   - component: {fileID: 5416456222418547504}
   - component: {fileID: 9110094503624809663}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: EnemyProjectileWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,3 +193,4 @@ MonoBehaviour:
   shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   fireRate: 0.9
   projectileLayer: 12
+  bulletPrefab: {fileID: 4639389982959027063, guid: 7de6ed17e6bdbc14baebeaaeae1102fe, type: 3}

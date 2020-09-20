@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 5416456222418547504}
   - component: {fileID: 194020005323526388}
   m_Layer: 8
-  m_Name: BasicLaserWeapon
+  m_Name: PlayerLaserWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,6 +521,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 263168
   bouncy: 1
+  laserShotPrefab: {fileID: 8688187427775985961, guid: 5944ed64d8a57d140850fec2b16b2142, type: 3}
 --- !u!1 &8054458357250452015
 GameObject:
   m_ObjectHideFlags: 0

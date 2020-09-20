@@ -11,7 +11,8 @@ internal class LaserWeapon : Weapon
     [SerializeField] private float laserRenderTime = 0.3f;
     [SerializeField] private LayerMask thingsWeHit = 0;
     [SerializeField] private bool bouncy = true;
-
+    [SerializeField] private GameObject laserShotPrefab = default;
+    
     private Coroutine _shootingCoroutine;
 
     public override void StartShooting()
@@ -69,7 +70,7 @@ internal class LaserWeapon : Weapon
 
     private void DrawLaser(Vector3 origin, Vector3 direction, float hitDistance)
     {
-        var laser = PoolManager.Instance.Get("Laser");
+        var laser = PoolManager.Instance.Get(laserShotPrefab.name);
         if (laser)
         {
             var lineRenderer = laser.GetComponent<LineRenderer>();

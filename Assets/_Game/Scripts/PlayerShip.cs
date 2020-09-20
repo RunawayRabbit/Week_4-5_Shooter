@@ -2,13 +2,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShip : MonoBehaviour
+public class PlayerShip : MonoBehaviour, IDamageable
 {
     [SerializeField] GameObject target = default;
     [SerializeField] private float _distanceFromTarget = 3.0f;
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private float overShoulderLag = 0.4f;
     [SerializeField] private float weaponRotateThresholdVelocity = 0.333f;
+
+    [SerializeField] private int maxHp = 30;
+    public int HP { get; private set; }
     
     private Arena _arena;
     private Vector3 _velocity = default;
@@ -20,6 +23,7 @@ public class PlayerShip : MonoBehaviour
 
     private void Start()
     {
+        HP = maxHp;
         _arena = Arena.Instance;
     }
 
@@ -92,5 +96,18 @@ public class PlayerShip : MonoBehaviour
                     weaponSlot.Rotate(_input3D);
                 break;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log($"Player HP left: {HP}");
+        HP -= damage;
+        if (HP <= 0) Die();
+    }
+
+    private void Die()
+    {
+        Debug.Log("Oops we died.");
+        //do nothing
     }
 }

@@ -6,7 +6,8 @@ internal class ProjectileWeapon : Weapon
     private Coroutine _shootingCoroutine;
     [SerializeField] protected float fireRate = 0.3f;
     [SerializeField, Layer] protected int projectileLayer;
-
+    [SerializeField] private GameObject bulletPrefab;
+    
     public override void StartShooting()
     {
         _shootingCoroutine = StartCoroutine(Shoot());
@@ -22,7 +23,7 @@ internal class ProjectileWeapon : Weapon
         while (true)
         {
             // Fire a bullet!
-            var bullet =  PoolManager.Instance.Get("Bullet");
+            var bullet =  PoolManager.Instance.Get(bulletPrefab.name);
             if (bullet)
             {
                 var trans = transform;

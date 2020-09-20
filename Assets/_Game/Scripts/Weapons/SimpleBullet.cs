@@ -7,7 +7,8 @@ public class SimpleBullet : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private float speed = 1.0f;
-    [SerializeField] float lifetime = 10.0f;
+    [SerializeField] float lifetime = 10.0f;   
+    [SerializeField] int damage = 2;
 
     private Coroutine _lifetimeTracker;
 
@@ -38,7 +39,9 @@ public class SimpleBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        //COLLIDE
-        //pool.Return(gameObject);
+        if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
+            damageable.TakeDamage(damage);
+        
+        PoolManager.Instance.Return(gameObject);
     }
 }
