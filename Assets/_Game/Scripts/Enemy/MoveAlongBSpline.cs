@@ -6,6 +6,7 @@ public class MoveAlongBSpline : MonoBehaviour, IEnemyMover
     private BezierSpline path;
     private float[] _distanceLUT;
     private const int LUTLength = 50;
+    
     public void Move()
     {
         transform.position += (transform.forward * Time.deltaTime);
@@ -16,9 +17,9 @@ public class MoveAlongBSpline : MonoBehaviour, IEnemyMover
         path = GetComponent<BezierSpline>();
         BuildDistanceLUT();
 
-        float distanceBetweenPoints = 5.0f;
+        float distanceBetweenPoints = 0.2f;
         int numberOfPointsToDraw = Mathf.FloorToInt(_distanceLUT[LUTLength - 1] / distanceBetweenPoints);
-        for (int i = 0; i < _distanceLUT[LUTLength - 1]; i++)
+        for (int i = 0; i < numberOfPointsToDraw; i++)
         {
             float distance = (float)i * distanceBetweenPoints;
             float t = GetTFromDistance(distance);
@@ -85,6 +86,7 @@ public class MoveAlongBSpline : MonoBehaviour, IEnemyMover
             float distance = (point - previousPoint).magnitude;
             lengthAccumulator += distance;
             _distanceLUT[i] = lengthAccumulator;
+            previousPoint = point;
         }
     }
 }
