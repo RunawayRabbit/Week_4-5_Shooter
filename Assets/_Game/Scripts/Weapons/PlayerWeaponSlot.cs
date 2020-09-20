@@ -14,8 +14,8 @@ public class PlayerWeaponSlot : WeaponSlot
     private float _arcWindingDirection = default;
     
     [SerializeField] public float turningArc;
-    /*[HideInInspector] */public Vector3 minRotation = Vector3.forward;
-    /*[HideInInspector] */public Vector3 maxRotation;
+    [HideInInspector] public Vector3 minRotation = Vector3.forward;
+    [HideInInspector] public Vector3 maxRotation;
 
     // @TODO: Really think about weapon destruction! Does it make the game better? Is it worth pursuing?
     //[SerializeField] private float colliderRadiusWhileEmpty = 2.0f;
@@ -51,10 +51,10 @@ public class PlayerWeaponSlot : WeaponSlot
             rotateSpeed * Time.deltaTime);  
     }
     
-    protected new void EquipWeapon(GameObject weaponPrefab)
+    public override void EquipWeapon(GameObject weaponPrefab)
     {
-        base.EquipWeapon(weaponPrefab);
         _ourCollider.radius = colliderRadiusWhileActive;
+        base.EquipWeapon(weaponPrefab);
     }
     
     public void Rotate(Vector3 input)
