@@ -7,8 +7,8 @@ public class WeaponPowerUp : MonoBehaviour
     [SerializeField] private GameObject weaponPrefab = default;
     private List<(float, PlayerWeaponSlot)> _hits = new List<(float, PlayerWeaponSlot)>();
     private Coroutine _resolveAtEndOfFrame;
-    
-    private void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Avatar") ||
             !other.gameObject.TryGetComponent<PlayerWeaponSlot>(out var weaponSlot))

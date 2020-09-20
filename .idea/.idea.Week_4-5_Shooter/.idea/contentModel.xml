@@ -20,6 +20,7 @@
             </e>
             <e p="Editor" t="Include">
               <e p="ArenaEditor.cs" t="Include" />
+              <e p="LayerAttributeEditor.cs" t="Include" />
               <e p="PlayerShipEditor.cs" t="Include" />
               <e p="PlayerWeaponSlotEditor.cs" t="Include" />
             </e>
@@ -33,6 +34,7 @@
             <e p="Utils" t="Include">
               <e p="DrawGizmoGrid.cs" t="Include" />
               <e p="GameObjectPool.cs" t="Include" />
+              <e p="LayerAttribute.cs" t="Include" />
               <e p="PoolManager.cs" t="Include" />
             </e>
             <e p="Weapons" t="Include">

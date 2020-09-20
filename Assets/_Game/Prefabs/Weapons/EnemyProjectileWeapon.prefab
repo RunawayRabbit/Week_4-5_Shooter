@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 5416456222418547504}
   - component: {fileID: 9110094503624809663}
   m_Layer: 8
-  m_Name: BasicProjectileWeapon
+  m_Name: EnemyProjectileWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,3 +192,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   fireRate: 0.15
+  projectileLayer: 12
