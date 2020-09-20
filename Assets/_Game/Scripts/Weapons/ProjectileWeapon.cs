@@ -7,7 +7,7 @@ internal class ProjectileWeapon : Weapon
     [SerializeField] protected float fireRate = 0.3f;
     [SerializeField, Layer] protected int projectileLayer = default;
     [SerializeField] private GameObject bulletPrefab = default;
-    
+
     public override void StartShooting()
     {
         _shootingCoroutine = StartCoroutine(Shoot());
