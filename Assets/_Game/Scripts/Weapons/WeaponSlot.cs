@@ -21,7 +21,7 @@ public class WeaponSlot : MonoBehaviour
         if (HasWeaponAttached) CurrentWeapon.StopShooting();
     }
     
-    protected void Awake()
+    protected virtual void Awake()
     {
         if(startingWeapon)
             EquipWeapon(startingWeapon);

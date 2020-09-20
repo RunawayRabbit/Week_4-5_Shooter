@@ -25,22 +25,30 @@ public class EnemyPath : MonoBehaviour
        return transform.TransformPoint(GetPoint(t));
     }
 
-    private Vector3 GetPoint(float f)
+    private Vector3 GetPoint(float t)
     {
-        //@TODO: Implement.
-        Debug.Assert(false, "We didn't write this yet.");
-        return Vector3.zero;
+        t = t * anchorPoints.Length;
+        if (t < 0.0f) t = 0.0f;
+        if (t >= anchorPoints.Length - 1) return anchorPoints[anchorPoints.Length - 1];
+        int segment = Mathf.FloorToInt(t);
+
+        return GetPointOnSegment(anchorPoints[segment],
+            anchorPoints[segment + 1],
+            controlPoints[2 * segment],
+            controlPoints[(2 * segment) + 1],
+            (float)(t - segment));
     }
 
-    public Vector3 GetPointOnSegment(float t)
+    private Vector3 GetPointOnSegment(Vector3 start, Vector3 end,
+        Vector3 ctrl1, Vector3 ctrl2, float t)
     {
         t = Mathf.Clamp01(t);
         float oneMinusT = 1f - t;
 
-        Vector3 startContribution = oneMinusT * oneMinusT * oneMinusT * anchorPoints[0];
-        Vector3 ctrlOneContribution = 3.0f * oneMinusT * oneMinusT * t * controlPoints[0];
-        Vector3 ctrlTwoContribution = 3.0f * oneMinusT * t * t * controlPoints[1];
-        Vector3 endContribution = t * t * t * anchorPoints[1];
+        Vector3 startContribution = oneMinusT * oneMinusT * oneMinusT * start;
+        Vector3 ctrlOneContribution = 3.0f * oneMinusT * oneMinusT * t * ctrl1;
+        Vector3 ctrlTwoContribution = 3.0f * oneMinusT * t * t * ctrl2;
+        Vector3 endContribution = t * t * t * end;
 
         return startContribution + ctrlOneContribution + ctrlTwoContribution + endContribution;
     }
