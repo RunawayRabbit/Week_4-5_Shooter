@@ -50,12 +50,9 @@ public class FollowCam : ICameraBehaviour
             return targets[0].transform.position;
 
         var bounds =  new Bounds(targets[0].transform.position, Vector3.zero);
-        
-        foreach (var target in targets)
-        {
-            bounds.Encapsulate(target.transform.position);
-            Debug.Log(target.name);
-        }
+
+        for (int i = 1; i < targets.Count; i++)
+            bounds.Encapsulate(targets[i].transform.position);
 
         Debug.DrawLine(bounds.min, bounds.max);
         
