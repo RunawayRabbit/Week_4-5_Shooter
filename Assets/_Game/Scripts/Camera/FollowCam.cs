@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class OverShoulderCam : ICameraBehaviour
+public class FollowCam : ICameraBehaviour
 {
     public CamAttributes Attribs { get; set; }
     
@@ -10,7 +11,7 @@ public class OverShoulderCam : ICameraBehaviour
     protected Vector3 prevLookPosition;
     protected float _fovVelocity = 0.0f;
     
-    public OverShoulderCam(ref CamAttributes camAttribs)
+    public FollowCam(ref CamAttributes camAttribs)
     {
         Attribs = camAttribs;
         prevLookPosition = AggregateTargets(Attribs.lookTargets);
@@ -23,7 +24,7 @@ public class OverShoulderCam : ICameraBehaviour
 
         float lateralVelocity = Vector3.Dot(_velocity, inTransform.right);
         Quaternion tilt = Quaternion.AngleAxis(-lateralVelocity * Attribs.tiltAmount, inTransform.forward);
-        Quaternion newRotation = tilt * Quaternion.LookRotation(lookPosition - inTransform.localPosition, Attribs.cameraUp);
+        Quaternion newRotation = tilt * Quaternion.LookRotation(lookPosition - inTransform.position, Attribs.cameraUp);
 
         prevLookPosition = lookPosition;
         
@@ -46,12 +47,18 @@ public class OverShoulderCam : ICameraBehaviour
     private Vector3 AggregateTargets(List<GameObject> targets)
     {
         if (targets.Count == 1)
-            return targets[0].transform.localPosition;
+            return targets[0].transform.position;
 
-        var bounds = new Bounds();
+        var bounds =  new Bounds(targets[0].transform.position, Vector3.zero);
+        
         foreach (var target in targets)
-            bounds.Encapsulate(target.transform.localPosition);
+        {
+            bounds.Encapsulate(target.transform.position);
+            Debug.Log(target.name);
+        }
 
+        Debug.DrawLine(bounds.min, bounds.max);
+        
         return bounds.center;
     }
 }

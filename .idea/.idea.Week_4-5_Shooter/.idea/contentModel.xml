@@ -15,8 +15,8 @@
               <e p="CamAttributes.cs" t="Include" />
               <e p="CameraController.cs" t="Include" />
               <e p="CameraTransition.cs" t="Include" />
+              <e p="FollowCam.cs" t="Include" />
               <e p="ICameraBehaviour.cs" t="Include" />
-              <e p="OverShoulderCam.cs" t="Include" />
             </e>
             <e p="Editor" t="Include">
               <e p="ArenaEditor.cs" t="Include" />

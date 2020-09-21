@@ -28,10 +28,10 @@ public class CameraController : MonoBehaviour
         overShoulderAttribs.lookTargets = new List<GameObject> { targetReticle };
 
         Debug.Assert(topDownAttribs, $"{gameObject.name} doesn't have any assigned Top Down camera attribs!!");
-        topDownAttribs.followTargets = new List<GameObject> { playerShip, arena };
-        topDownAttribs.lookTargets = new List<GameObject> { playerShip, arena };
+        topDownAttribs.followTargets = new List<GameObject> { playerShip, targetReticle, arena };
+        topDownAttribs.lookTargets = new List<GameObject> { playerShip, targetReticle };
 
-        _camBehaviour = new OverShoulderCam(ref topDownAttribs);
+        _camBehaviour = new FollowCam(ref topDownAttribs);
     }
 
     private void ArenaOnOnModeChange(Arena.Mode mode)
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.localPosition = _camBehaviour.GetPosition(transform.localPosition);
+        transform.position = _camBehaviour.GetPosition(transform.position);
         transform.rotation = _camBehaviour.GetRotation(transform);
         Camera.main.fieldOfView = _camBehaviour.GetFoV(Camera.main.fieldOfView);
     }

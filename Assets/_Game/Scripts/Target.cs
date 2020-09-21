@@ -56,8 +56,10 @@ public class Target : MonoBehaviour
         float maxAccelForFrame = Time.deltaTime * accelerationRate;
         _velocity = Vector3.MoveTowards(_velocity, desired3DVelocity, maxAccelForFrame);
  
+        Vector3 slidingArena = transform.localPosition - (_arena.velocity.x * Vector3.right);
+        
         // Constrain final position to the appropriate bounds.
-        Vector3 newPosition = _arena.ConstrainToBounds(transform.localPosition + _velocity * Time.deltaTime);
+        Vector3 newPosition = _arena.ConstrainToBounds(slidingArena + _velocity * Time.deltaTime);
         
         // Perform the move.
         transform.localPosition = newPosition;

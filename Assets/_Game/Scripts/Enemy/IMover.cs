@@ -1,5 +1,7 @@
 
+using UnityEngine;
+
 public interface IMover
 {
-    void Move();
+    Vector3 Move(); // returns the amount we moved by 
 }

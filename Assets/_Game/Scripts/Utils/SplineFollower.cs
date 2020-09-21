@@ -15,13 +15,13 @@ public class SplineFollower : MonoBehaviour, IMover
 
     private bool pathEnded = false;
 
-    public void Move()
+    public Vector3 Move()
     {
-        if (pathEnded) return;
+        if (pathEnded) return Vector3.zero;
         if (waypoints.Length == 0)
         {
             Debug.Log("We didn't build a waypoint array yet!");
-            return;
+            return Vector3.zero;
         }
         const float toleranceSq = 0.1f * 0.1f;
         var currentPosition = transform.position;
@@ -43,6 +43,7 @@ public class SplineFollower : MonoBehaviour, IMover
         }
         
         transform.position += velocity;
+        return velocity;
     }
 
     //@TODO: This was a cool mistake. Make it into a different movement mode!

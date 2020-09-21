@@ -24,6 +24,7 @@ public class Arena : MonoBehaviour
     
     //@NOTE: This code requires that our arenas always be axis-aligned vertical and horizontal.
     public static Vector3 BasisX = Vector3.right;
+    public Vector3 velocity;
     public Vector3 BasisY => (CurrentMode == Mode.Horizontal) ? Vector3.forward : Vector3.up;
     public Vector3 CurrentNormal => (CurrentMode == Mode.Horizontal) ? Vector3.up : Vector3.back;
 
@@ -49,7 +50,8 @@ public class Arena : MonoBehaviour
 
     private void Update()
     {
-        if(_hasMover) _mover.Move();
+        if(_hasMover)
+            velocity = _mover.Move();
     }
 
     public float ForwardDistanceToBounds(Vector3 point, Vector2 inDirection)
