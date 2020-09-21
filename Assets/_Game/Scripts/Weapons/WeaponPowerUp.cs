@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponPowerUp : MonoBehaviour
 {
     [SerializeField] private GameObject weaponPrefab = default;
     private List<(float, PlayerWeaponSlot)> _hits = new List<(float, PlayerWeaponSlot)>();
+
     private Coroutine _resolveAtEndOfFrame;
 
     private void OnTriggerEnter(Collider other)
@@ -20,7 +22,6 @@ public class WeaponPowerUp : MonoBehaviour
 
         if (_resolveAtEndOfFrame == null)
             _resolveAtEndOfFrame = StartCoroutine(ResolveHits());
-
     }
 
     private IEnumerator ResolveHits()

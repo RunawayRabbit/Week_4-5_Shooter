@@ -54,8 +54,6 @@ public class FollowCam : ICameraBehaviour
         for (int i = 1; i < targets.Count; i++)
             bounds.Encapsulate(targets[i].transform.position);
 
-        Debug.DrawLine(bounds.min, bounds.max);
-        
         return bounds.center;
     }
 }

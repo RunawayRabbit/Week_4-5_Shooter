@@ -9,7 +9,7 @@ public class BezierSpline : MonoBehaviour
     [HideInInspector] public Vector3[] anchorPoints;
 
     // Increase this to improve the accuracy of distance-based interpolation. I recommend 30.
-    private const int LUTLength = 30;
+    private const int LUTLength = 50;
     private float[] _distanceLUT;
     public float ArcLength => _distanceLUT[LUTLength - 1];
     private void Awake()

@@ -11,6 +11,7 @@
         <e p="_Game" t="Include">
           <e p="Scripts" t="Include">
             <e p="Arena.cs" t="Include" />
+            <e p="BasicMover.cs" t="Include" />
             <e p="Camera" t="Include">
               <e p="CamAttributes.cs" t="Include" />
               <e p="CameraController.cs" t="Include" />
@@ -27,19 +28,20 @@
             </e>
             <e p="Enemy" t="Include">
               <e p="Enemy.cs" t="Include" />
-              <e p="IMover.cs" t="Include" />
               <e p="ShootyBoy.cs" t="Include" />
             </e>
             <e p="IDamageable.cs" t="Include" />
+            <e p="Mover" t="Include">
+              <e p="IMover.cs" t="Include" />
+              <e p="SplineFollower.cs" t="Include" />
+            </e>
             <e p="PlayerShip.cs" t="Include" />
             <e p="Target.cs" t="Include" />
             <e p="Utils" t="Include">
               <e p="BezierSpline.cs" t="Include" />
-              <e p="DrawGizmoGrid.cs" t="Include" />
               <e p="GameObjectPool.cs" t="Include" />
               <e p="LayerAttribute.cs" t="Include" />
               <e p="PoolManager.cs" t="Include" />
-              <e p="SplineFollower.cs" t="Include" />
             </e>
             <e p="Weapons" t="Include">
               <e p="LaserVisuals.cs" t="Include" />
