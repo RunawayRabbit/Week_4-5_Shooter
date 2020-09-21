@@ -11,7 +11,6 @@ public class PoolManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        poolDefinitions = Resources.LoadAll<GameObjectPool>("ObjectPools");
         pools = new List<GameObject>[poolDefinitions.Length];
 
         for (int i = 0; i < poolDefinitions.Length; i++)

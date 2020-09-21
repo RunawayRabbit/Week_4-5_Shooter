@@ -89,7 +89,10 @@ public class PlayerShip : MonoBehaviour, IDamageable
         {
             case InputActionPhase.Started:
                 _locked = true;
+                foreach (var weaponSlot in weaponSlots)
+                    weaponSlot.StopRotation();
                 break;
+            
             case InputActionPhase.Canceled:
                 _locked = false;
                 foreach (var weaponSlot in weaponSlots)

@@ -25,7 +25,7 @@ public class PlayerWeaponSlot : WeaponSlot
     private void OnDisable() => Arena.Instance.OnModeChange -= ChangeMode;
     private void ChangeMode(Arena.Mode newMode) => _currentMode = newMode;
     
-    private void Awake()
+    protected override void Awake()
     {
         _arcWindingDirection = Vector3.Dot(Vector3.Cross(minRotation, maxRotation), Vector3.up);
         
@@ -83,5 +83,10 @@ public class PlayerWeaponSlot : WeaponSlot
 
         if (!isMinToInputSameWinding && !isMaxToInputSameWinding) return maxRotation;
         return minRotation;
+    }
+
+    public void StopRotation()
+    {
+        _targetVector = transform.forward;
     }
 }

@@ -74,7 +74,7 @@ internal class LaserWeapon : Weapon
         if (laser)
         {
             var lineRenderer = laser.GetComponent<LineRenderer>();
-            var laserShotComponent = laser.GetComponent<LaserShot>();
+            var laserShotComponent = laser.GetComponent<LaserVisuals>();
             laserShotComponent.lifetime = laserRenderTime;
             lineRenderer.SetPosition(0, origin);
 
