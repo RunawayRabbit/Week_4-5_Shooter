@@ -15,6 +15,8 @@ public class BezierSplineEditor : Editor
         _handleRotation = Tools.pivotRotation == PivotRotation.Local ?
             _targetTransform.rotation : Quaternion.identity;
         
+        if(_path.points.Length == 0) return;
+        
         for (int i = 0; i < _path.points.Length; i++)
         {
             Vector3 worldSpacePoint = _targetTransform.TransformPoint(_path.points[i]);

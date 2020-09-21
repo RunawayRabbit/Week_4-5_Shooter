@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class SplineFollower : MonoBehaviour, IEnemyMover
+public class SplineFollower : MonoBehaviour, IMover
 {
     [SerializeField] private GameObject pathObject = default;
     private BezierSpline path;
@@ -18,6 +18,11 @@ public class SplineFollower : MonoBehaviour, IEnemyMover
     public void Move()
     {
         if (pathEnded) return;
+        if (waypoints.Length == 0)
+        {
+            Debug.Log("We didn't build a waypoint array yet!");
+            return;
+        }
         const float toleranceSq = 0.1f * 0.1f;
         var currentPosition = transform.position;
         var targetWaypoint = waypoints[currentWaypoint] + pathOffset;
@@ -66,12 +71,10 @@ public class SplineFollower : MonoBehaviour, IEnemyMover
 
     private void Awake()
     {
-        if(!pathObject.TryGetComponent<BezierSpline>(out path))
-            Debug.LogWarning($"SplineFollower on {gameObject.name} doesn't have a spline object defined! I have nothing to follow!");
-    }
-
-    private void Start()
-    {
+        if(! TryGetComponent<BezierSpline>(out path) && 
+            pathObject && !pathObject.TryGetComponent<BezierSpline>(out path))
+            Debug.LogWarning($"SplineFollower on {gameObject.transform.name} doesn't have a spline object defined! I have nothing to follow!");
+        
         GenerateWaypoints();
     }
 

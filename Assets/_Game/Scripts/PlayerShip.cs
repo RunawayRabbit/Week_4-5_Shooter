@@ -39,16 +39,17 @@ public class PlayerShip : MonoBehaviour, IDamageable
 
         float smoothTime = _arena.CurrentMode == Arena.Mode.Horizontal ? 0.01f : overShoulderLag;
         
-        Vector3 newPosition = Vector3.SmoothDamp(currentTransform.position, desiredPosition, ref _velocity, smoothTime, _moveSpeed);
+        Vector3 newPosition = Vector3.SmoothDamp(currentTransform.localPosition, desiredPosition, ref _velocity, smoothTime, _moveSpeed);
 
-        currentTransform.position = newPosition;
+        currentTransform.localPosition = newPosition;
         currentTransform.localRotation = look;
     }
 
     // ReSharper disable once UnusedMember.Global
     public void Move(InputAction.CallbackContext context)
     {
-        //@NOTE: Actual movement isn't handled here! It's handled in the target reticule, we just follow that around.
+        //@NOTE: Movement from input isn't handled here! It's handled in the target
+        // reticule, we just follow that around.
         // This callback is only for managing things that also happen when we move.
         
         // Rotate weapons

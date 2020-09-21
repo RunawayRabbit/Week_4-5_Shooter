@@ -3,11 +3,11 @@
 public class ShootyBoy : Enemy
 {
     [SerializeField] private WeaponSlot weaponSlot = default;
-    [SerializeField] private IEnemyMover mover;
+    [SerializeField] private IMover mover;
 
     protected override void Awake()
     {
-        mover = GetComponent<IEnemyMover>();
+        mover = GetComponent<IMover>();
         base.Awake();
     }
     

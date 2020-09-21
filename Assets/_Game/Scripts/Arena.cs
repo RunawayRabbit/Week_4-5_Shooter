@@ -7,6 +7,9 @@ public class Arena : MonoBehaviour
     private static Arena _instance;
     public static Arena Instance => _instance;
 
+    private IMover _mover;
+    private bool _hasMover;
+    
     public enum Mode
     {
         Horizontal,
@@ -26,6 +29,7 @@ public class Arena : MonoBehaviour
 
     private void Awake()
     {
+        _hasMover = TryGetComponent<IMover>(out _mover);
         if (_instance != null && _instance != this)
             Debug.LogError("We have multiple Arena instances for some reason");
         else
@@ -41,6 +45,11 @@ public class Arena : MonoBehaviour
         CurrentMode = CurrentMode == Mode.Horizontal ? Mode.Vertical : Mode.Horizontal; 
         Debug.Log($"MODE SWITCHED: {CurrentMode}");
         OnModeChange?.Invoke(CurrentMode);
+    }
+
+    private void Update()
+    {
+        if(_hasMover) _mover.Move();
     }
 
     public float ForwardDistanceToBounds(Vector3 point, Vector2 inDirection)
