@@ -9,9 +9,6 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Game" t="Include">
-          <e p="Sandbox" t="Include">
-            <e p="BezierSpline.cs" t="Include" />
-          </e>
           <e p="Scripts" t="Include">
             <e p="Arena.cs" t="Include" />
             <e p="Camera" t="Include">
@@ -38,6 +35,7 @@
             <e p="PlayerShip.cs" t="Include" />
             <e p="Target.cs" t="Include" />
             <e p="Utils" t="Include">
+              <e p="BezierSpline.cs" t="Include" />
               <e p="DrawGizmoGrid.cs" t="Include" />
               <e p="GameObjectPool.cs" t="Include" />
               <e p="LayerAttribute.cs" t="Include" />

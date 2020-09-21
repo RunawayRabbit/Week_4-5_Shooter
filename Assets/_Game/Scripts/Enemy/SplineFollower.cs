@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class SplineFollower : MonoBehaviour, IEnemyMover
 {
-    [SerializeField] private GameObject pathObject;
+    [SerializeField] private GameObject pathObject = default;
     private BezierSpline path;
 
     [SerializeField] private float Speed = 5.0f;
     [SerializeField] private int numWaypoints = 5;
+    [SerializeField]private Vector3 pathOffset = default;
 
     private int currentWaypoint = 0;
     private Vector3[] waypoints;
@@ -23,7 +24,7 @@ public class SplineFollower : MonoBehaviour, IEnemyMover
         if (pathEnded) return;
         const float toleranceSq = 0.1f * 0.1f;
         var currentPosition = transform.position;
-        var targetWaypoint = waypoints[currentWaypoint];
+        var targetWaypoint = waypoints[currentWaypoint] + pathOffset;
 
         var velocity = (targetWaypoint - currentPosition).normalized *
                        (Speed * Time.deltaTime);
