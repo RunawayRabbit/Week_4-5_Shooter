@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6323114481195049069}
   - component: {fileID: -7818936320159997030}
   m_Layer: 11
-  m_Name: Laser
+  m_Name: FriendlyLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 10
-  startColor: {r: 1, g: 1, b: 1, a: 1}
+  startColor: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
   endColor: {r: 1, g: 0, b: 0, a: 0}
