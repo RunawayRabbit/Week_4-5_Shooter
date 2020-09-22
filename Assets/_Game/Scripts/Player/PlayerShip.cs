@@ -11,30 +11,25 @@ public class PlayerShip : MonoBehaviour, IDamageable
     [SerializeField] private float overShoulderLag = 0.4f;
     [SerializeField] private float weaponRotateThresholdVelocity = 0.333f;
 
-    [SerializeField] private int maxHp = 30;
     public int HP { get; private set; }
+    [SerializeField] private int maxHp = 30;
     
     private Arena _arena;
     private Vector3 _velocity = default;
 
-    private bool _locked;
-
-    public PlayerWeaponSlot[] weaponSlots;
     private Vector3 _input3D;
 
-    [SerializeField] private float shieldUptime;
-    [SerializeField] private float shieldCooldown;
-    private bool _isShielded = false;
-    private bool _isShieldOnCooldown = false;
+    public PlayerWeaponSlot[] weaponSlots;
+    private bool _locked;
 
-    private void Start()
+    private PlayerShields _shields;
+
+    private void Awake() //@BUG: formally Start. Can we make this Awake now?
     {
         HP = maxHp;
         _arena = Arena.Instance;
+        _shields = GetComponent<PlayerShields>();
     }
-
-    private void OnDisable() => StopAllCoroutines();
-
 
     private void Update()
     {
@@ -112,38 +107,11 @@ public class PlayerShip : MonoBehaviour, IDamageable
     }
     
     // ReSharper disable once UnusedMember.Global
-    public void Shield(InputAction.CallbackContext context)
-    {
-        if(!_isShieldOnCooldown)
-        {
-            Debug.Log("Shields go up");
-             if (context.phase == InputActionPhase.Started)
-             {
-                 _isShielded = true;
-                 _isShieldOnCooldown = true;
-                 StartCoroutine(RaiseShields());
-                 StartCoroutine(ShieldCooldown());
-             }
-        }
-    }
-
-    private IEnumerator ShieldCooldown()
-    {
-        yield return new WaitForSeconds(shieldCooldown);
-        Debug.Log("Shields ready to go!");
-        _isShieldOnCooldown = false;
-    }
-
-    private IEnumerator RaiseShields()
-    {
-        yield return new WaitForSeconds(shieldUptime);
-        Debug.Log("Shields go down");
-        _isShielded = false;
-    }
+    public void Shield(InputAction.CallbackContext context) => _shields.Shield(context);
 
     public void TakeDamage(int damage)
     {
-        if(!_isShielded)
+        if(!_shields.AreShieldsUp)
             {
             Debug.Log($"Player HP left: {HP}");
             HP -= damage;

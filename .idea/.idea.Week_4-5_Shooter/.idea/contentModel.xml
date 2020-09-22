@@ -35,8 +35,11 @@
               <e p="IMover.cs" t="Include" />
               <e p="SplineFollower.cs" t="Include" />
             </e>
-            <e p="PlayerShip.cs" t="Include" />
-            <e p="Target.cs" t="Include" />
+            <e p="Player" t="Include">
+              <e p="PlayerShields.cs" t="Include" />
+              <e p="PlayerShip.cs" t="Include" />
+              <e p="Target.cs" t="Include" />
+            </e>
             <e p="Utils" t="Include">
               <e p="BezierSpline.cs" t="Include" />
               <e p="GameObjectPool.cs" t="Include" />
