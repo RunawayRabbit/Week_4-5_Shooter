@@ -53,15 +53,9 @@ public class SplineFollower : MonoBehaviour, IMover
     private void Awake()
     {
         if (TryGetComponent(out path))
-        {
             pathObject = gameObject;
-        }
         else if (!pathObject || !pathObject.TryGetComponent(out path))
-        {
-            Debug.Log(
-                $"SplineFollower on {gameObject.transform.name} doesn't have a spline object defined! I have nothing to follow!");
             return;
-        }
 
         GenerateWaypoints();
         pathOffset += transform.position - pathObject.transform.position;

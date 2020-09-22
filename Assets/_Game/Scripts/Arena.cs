@@ -42,10 +42,21 @@ public class Arena : MonoBehaviour
     public void ToggleMode(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+        PerformModeChange();
+    }
+
+    public void SetMode(Mode mode)
+    {
+        if (CurrentMode == mode) return;
+        PerformModeChange();
+    }
+
+    private void PerformModeChange()
+    {
         CurrentMode = CurrentMode == Mode.Horizontal ? Mode.Vertical : Mode.Horizontal;
-        Debug.Log($"MODE SWITCHED: {CurrentMode}");
         OnModeChange?.Invoke(CurrentMode);
     }
+
 
     private void Update()
     {
