@@ -4,9 +4,9 @@ using UnityEngine;
 internal class ProjectileWeapon : Weapon
 {
     private Coroutine _shootingCoroutine;
-    [SerializeField] protected float fireRate = 0.3f;
-    [SerializeField, Layer] protected int projectileLayer = default;
     [SerializeField] private GameObject bulletPrefab = default;
+    [SerializeField] protected float fireRate = 0.3f;
+    [SerializeField] [Layer] protected int projectileLayer = default;
 
     public override void StartShooting()
     {
@@ -22,18 +22,22 @@ internal class ProjectileWeapon : Weapon
     {
         while (true)
         {
+            var timeSinceLastShot = Time.time - _lastShotTime;
+            if (timeSinceLastShot < fireRate)
+                yield return new WaitForSeconds(timeSinceLastShot);
+
             // Fire a bullet!
-            var bullet =  PoolManager.Instance.Get(bulletPrefab.name);
+            var bullet = PoolManager.Instance.Get(bulletPrefab.name);
             if (bullet)
             {
                 var trans = transform;
                 bullet.transform.position = trans.position;
                 bullet.transform.rotation = trans.rotation;
-                if(projectileLayer != 0) bullet.gameObject.layer = projectileLayer;
+                if (projectileLayer != 0) bullet.gameObject.layer = projectileLayer;
                 bullet.SetActive(true);
             }
-            
-            yield return new WaitForSeconds(fireRate); 
+
+            yield return new WaitForSeconds(fireRate);
         }
     }
 }
