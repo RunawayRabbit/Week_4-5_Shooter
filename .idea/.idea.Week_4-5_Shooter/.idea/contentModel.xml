@@ -11,7 +11,6 @@
         <e p="_Game" t="Include">
           <e p="Scripts" t="Include">
             <e p="Arena.cs" t="Include" />
-            <e p="BasicMover.cs" t="Include" />
             <e p="Camera" t="Include">
               <e p="CamAttributes.cs" t="Include" />
               <e p="CameraController.cs" t="Include" />
@@ -33,6 +32,7 @@
             </e>
             <e p="IDamageable.cs" t="Include" />
             <e p="Mover" t="Include">
+              <e p="BasicMover.cs" t="Include" />
               <e p="IMover.cs" t="Include" />
               <e p="SplineFollower.cs" t="Include" />
             </e>

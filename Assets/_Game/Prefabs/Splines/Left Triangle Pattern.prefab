@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4280631912447695773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4280631912447695771}
+  - component: {fileID: 4280631912447695772}
+  m_Layer: 0
+  m_Name: Left Triangle Pattern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4280631912447695771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280631912447695773}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4280631912447695772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280631912447695773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5be35c85ba4e2d4983fcc815a177a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClosed: 1
+  points:
+  - {x: -5.690775, y: 0, z: 1.3121085}
+  - {x: 1.9841208, y: 0, z: 1.3938823}
+  - {x: -1.6174457, y: 0, z: -1.365949}
+  - {x: -5.2746477, y: 0, z: -6.217112}
+  - {x: -8.321879, y: 0, z: -3.025823}
+  - {x: -10.15048, y: 0, z: -0.20654643}
+  controlPoints:
+  - {x: -3.1324763, y: 0, z: 1.3393664}
+  - {x: -0.57417774, y: 0, z: 1.3666244}
+  - {x: 0.78359866, y: 0, z: 0.47393847}
+  - {x: -0.41692352, y: 0, z: -0.44600534}
+  - {x: -2.836513, y: 0, z: -2.9830034}
+  - {x: -4.05558, y: 0, z: -4.6000576}
+  - {x: -6.290392, y: 0, z: -5.153349}
+  - {x: -7.3061357, y: 0, z: -4.0895863}
+  - {x: -8.931413, y: 0, z: -2.086064}
+  - {x: -9.540947, y: 0, z: -1.1463052}
+  - {x: -8.663912, y: 0, z: 0.2996719}
+  - {x: -7.1773434, y: 0, z: 0.8058902}
+  anchorPoints:
+  - {x: -5.15491, y: 0, z: 1.0726283}
+  - {x: 0.10471046, y: 0, z: 0.9202814}
+  - {x: -1.6267183, y: 0, z: -1.7145044}
+  - {x: -5.172986, y: 0, z: -4.8767033}
+  - {x: -8.118774, y: 0, z: -3.0878253}
+  - {x: -9.102429, y: 0, z: -0.42331666}
+  - {x: -5.15491, y: 0, z: 1.0726283}
