@@ -3,10 +3,7 @@
 public class WeaponSlot : MonoBehaviour
 {
     protected Weapon CurrentWeapon = default;
-
     protected bool HasWeaponAttached = false;
-
-    //@TODO: PRETTIFY THE INSPECTOR WITH HEADERS, RANGES AND SO ON
     [SerializeField] private GameObject startingWeapon = default;
 
     protected GameObject WeaponObject = default;

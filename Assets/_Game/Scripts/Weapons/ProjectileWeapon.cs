@@ -10,12 +10,16 @@ public class ProjectileWeapon : Weapon
 
     public override void StartShooting()
     {
+        if (isShooting) return;
         _shootingCoroutine = StartCoroutine(Shoot());
+        isShooting = true;
     }
 
     public override void StopShooting()
     {
+        if (!isShooting) return;
         StopCoroutine(_shootingCoroutine);
+        isShooting = false;
     }
 
     public virtual IEnumerator Shoot()

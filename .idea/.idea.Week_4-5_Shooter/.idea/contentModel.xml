@@ -54,6 +54,7 @@
               <e p="PlayerWeaponSlot.cs" t="Include" />
               <e p="PowerUpTumbler.cs" t="Include" />
               <e p="ProjectileWeapon.cs" t="Include" />
+              <e p="RotatingWeaponSlot.cs" t="Include" />
               <e p="SimpleBullet.cs" t="Include" />
               <e p="Weapon.cs" t="Include" />
               <e p="WeaponPowerUp.cs" t="Include" />

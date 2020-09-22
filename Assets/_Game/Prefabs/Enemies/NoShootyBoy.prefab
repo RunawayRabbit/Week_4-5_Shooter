@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e162bb83fcf1cb4585ebc28de706c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHp: 20
+  startingHp: 15
   weaponSlot: {fileID: 6135750884426380978}
 --- !u!54 &6135750883737116850
 Rigidbody:
@@ -490,7 +490,7 @@ MonoBehaviour:
   numWaypoints: 30
   pathObject: {fileID: 3410987892800651959, guid: 220c137f595845249b3d87cb46c4f45a, type: 3}
   pathOffset: {x: 0, y: 0, z: 0}
-  speed: 6
+  speed: 4
 --- !u!65 &3013492992966231299
 BoxCollider:
   m_ObjectHideFlags: 0

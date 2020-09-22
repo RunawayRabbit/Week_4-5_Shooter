@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
+  shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   rotateSpeed: 65
   turningArc: 35
   minRotation: {x: 0, y: 0, z: 1}
@@ -260,7 +261,7 @@ GameObject:
   - component: {fileID: 2840089836517460845}
   m_Layer: 8
   m_Name: Avatar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -585,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 5992139387392019244, guid: a0d6de2fc09b261439fe296898246c61, type: 3}
+  shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   rotateSpeed: 50
   turningArc: 0
   minRotation: {x: 0, y: 0, z: 1}
@@ -746,6 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
+  shootReference: {fileID: -6971861713735572124, guid: a04d138eb808d074ba1a37a7922b5c34, type: 3}
   rotateSpeed: 65
   turningArc: -35
   minRotation: {x: 0, y: 0, z: 1}

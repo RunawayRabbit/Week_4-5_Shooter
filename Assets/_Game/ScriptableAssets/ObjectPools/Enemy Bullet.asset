@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy Bullet
   m_EditorClassIdentifier: 
   prefab: {fileID: 4639389982959027063, guid: 7de6ed17e6bdbc14baebeaaeae1102fe, type: 3}
-  maxCount: 20
+  maxCount: 50
