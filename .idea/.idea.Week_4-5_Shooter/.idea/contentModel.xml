@@ -29,6 +29,7 @@
             <e p="Enemy" t="Include">
               <e p="Enemy.cs" t="Include" />
               <e p="ShootyBoy.cs" t="Include" />
+              <e p="WaveSpawner.cs" t="Include" />
             </e>
             <e p="IDamageable.cs" t="Include" />
             <e p="Mover" t="Include">
