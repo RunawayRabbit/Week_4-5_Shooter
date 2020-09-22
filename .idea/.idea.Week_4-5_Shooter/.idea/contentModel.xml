@@ -50,6 +50,7 @@
               <e p="LaserVisuals.cs" t="Include" />
               <e p="LaserWeapon.cs" t="Include" />
               <e p="PlayerWeaponSlot.cs" t="Include" />
+              <e p="PowerUpTumbler.cs" t="Include" />
               <e p="ProjectileWeapon.cs" t="Include" />
               <e p="SimpleBullet.cs" t="Include" />
               <e p="Weapon.cs" t="Include" />

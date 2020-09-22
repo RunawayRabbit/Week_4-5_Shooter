@@ -29,6 +29,8 @@ public class SplineFollower : MonoBehaviour, IMover
         }
         
         GenerateWaypoints();
+
+        pathOffset += (transform.position - pathObject.transform.position);
     }
     public Vector3 Move()
     {

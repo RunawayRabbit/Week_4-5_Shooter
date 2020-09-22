@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3410987892800651959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3410987892800651958}
+  - component: {fileID: 3410987892800651961}
+  m_Layer: 0
+  m_Name: Powerup Pattern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3410987892800651958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410987892800651959}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3410987892800651961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410987892800651959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5be35c85ba4e2d4983fcc815a177a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClosed: 1
+  points:
+  - {x: 0, y: 0, z: 0}
+  - {x: 4, y: 0, z: 4}
+  - {x: 8, y: 0, z: 0}
+  - {x: 4, y: 0, z: -4}
+  - {x: -4, y: 0, z: 4}
+  - {x: -8, y: 0, z: 0}
+  - {x: -4, y: 0, z: -4}
+  controlPoints:
+  - {x: 1.3333334, y: 0, z: 1.3333334}
+  - {x: 2.6666667, y: 0, z: 2.6666667}
+  - {x: 5.3333335, y: 0, z: 2.6666665}
+  - {x: 6.666667, y: 0, z: 1.3333333}
+  - {x: 6.6666665, y: 0, z: -1.3333334}
+  - {x: 5.333333, y: 0, z: -2.6666667}
+  - {x: 1.3333333, y: 0, z: -1.3333333}
+  - {x: -1.3333335, y: 0, z: 1.3333335}
+  - {x: -5.3333335, y: 0, z: 2.6666665}
+  - {x: -6.666667, y: 0, z: 1.3333333}
+  - {x: -6.6666665, y: 0, z: -1.3333334}
+  - {x: -5.333333, y: 0, z: -2.6666667}
+  - {x: -2.6666665, y: 0, z: -2.6666665}
+  - {x: -1.3333333, y: 0, z: -1.3333333}
+  anchorPoints:
+  - {x: 0.000000059604645, y: 0, z: 0.000000059604645}
+  - {x: 4, y: 0, z: 2.6666665}
+  - {x: 6.666667, y: 0, z: -0.000000059604645}
+  - {x: 3.333333, y: 0, z: -2}
+  - {x: -3.3333335, y: 0, z: 2}
+  - {x: -6.666667, y: 0, z: -0.000000059604645}
+  - {x: -3.9999998, y: 0, z: -2.6666665}
+  - {x: 0.000000059604645, y: 0, z: 0.000000059604645}

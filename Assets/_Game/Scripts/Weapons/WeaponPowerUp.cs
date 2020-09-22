@@ -7,7 +7,7 @@ public class WeaponPowerUp : MonoBehaviour
 {
     [SerializeField] private GameObject weaponPrefab = default;
     private List<(float, PlayerWeaponSlot)> _hits = new List<(float, PlayerWeaponSlot)>();
-
+    
     private Coroutine _resolveAtEndOfFrame;
 
     private void OnTriggerEnter(Collider other)

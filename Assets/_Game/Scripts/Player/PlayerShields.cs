@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerShields : MonoBehaviour
 {
-
     [SerializeField] private float shieldUptime = 5.0f;
     [SerializeField] private float shieldCooldown = 20.0f;
     public bool AreShieldsUp { get; private set; }
