@@ -2,12 +2,12 @@
 
 public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField] private int enemyCount;
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Vector3 offsetBetweenSpawns;
-    [SerializeField] private GameObject path;
+    [SerializeField] private int enemyCount = 1;
+    [SerializeField] private GameObject enemyPrefab = default;
+    [SerializeField] private Vector3 offsetBetweenSpawns = Vector3.zero;
+    [SerializeField] private GameObject path = default;
     [SerializeField] private bool shouldMoveWithArena = true;
-    [SerializeField] private Vector3 spawnInLocation;
+    [SerializeField] private Vector3 spawnInLocation = Vector3.zero;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,5 +23,7 @@ public class WaveSpawner : MonoBehaviour
 
             offsetAccumulator += offsetBetweenSpawns;
         }
+
+        Arena.Instance.horizontalArena.x = 25.0f;
     }
 }

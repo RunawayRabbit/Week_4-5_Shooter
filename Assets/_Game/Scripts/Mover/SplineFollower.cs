@@ -58,7 +58,7 @@ public class SplineFollower : MonoBehaviour, IMover
         }
         else if (!pathObject || !pathObject.TryGetComponent(out path))
         {
-            Debug.LogWarning(
+            Debug.Log(
                 $"SplineFollower on {gameObject.transform.name} doesn't have a spline object defined! I have nothing to follow!");
             return;
         }

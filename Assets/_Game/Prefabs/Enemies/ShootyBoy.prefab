@@ -369,8 +369,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6135750883737116875}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.2, y: 0, z: -1.26}
-  m_LocalScale: {x: 1.5931, y: 0.58342457, z: 1.5931}
+  m_LocalPosition: {x: 3.2, y: 0, z: -1.174}
+  m_LocalScale: {x: 1.27448, y: 0.46673965, z: 1.27448}
   m_Children:
   - {fileID: 6135750884426380981}
   - {fileID: 3229508786453253644}
@@ -486,11 +486,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0f6e903814e9b88b290782bc40c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathObject: {fileID: 3410987892800651959, guid: 220c137f595845249b3d87cb46c4f45a, type: 3}
   localSpace: 0
-  speed: 5
   numWaypoints: 30
+  pathObject: {fileID: 3410987892800651959, guid: 220c137f595845249b3d87cb46c4f45a, type: 3}
   pathOffset: {x: 1.06, y: 0, z: 0}
+  speed: 5
 --- !u!65 &3013492992966231299
 BoxCollider:
   m_ObjectHideFlags: 0
