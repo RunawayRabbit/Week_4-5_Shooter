@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 internal class LaserWeapon : Weapon
@@ -39,6 +40,7 @@ internal class LaserWeapon : Weapon
 
     private void ShootLaser(Vector3 origin, Vector3 direction, float distanceToCast)
     {
+        var hitCandidates = new List<(IDamageable damageable, float hitDistance)>();
         var ray = new Ray(origin, direction);
         var bounceMinHitDistance = float.PositiveInfinity;
         Vector3 bounceNormal = default;
@@ -55,8 +57,12 @@ internal class LaserWeapon : Weapon
                 }
 
             if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
-                damageable.TakeDamage(damagePerShot);
+                hitCandidates.Add((damageable, hit.distance));
         }
+
+        foreach (var (damageable, hitDistance) in hitCandidates)
+            if (hitDistance < bounceMinHitDistance)
+                damageable.TakeDamage(damagePerShot);
 
         if (bounceMinHitDistance < distanceToCast)
         {
