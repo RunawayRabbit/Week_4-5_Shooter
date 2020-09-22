@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,11 +22,19 @@ public class PlayerShip : MonoBehaviour, IDamageable
     public PlayerWeaponSlot[] weaponSlots;
     private Vector3 _input3D;
 
+    [SerializeField] private float shieldUptime;
+    [SerializeField] private float shieldCooldown;
+    private bool _isShielded = false;
+    private bool _isShieldOnCooldown = false;
+
     private void Start()
     {
         HP = maxHp;
         _arena = Arena.Instance;
     }
+
+    private void OnDisable() => StopAllCoroutines();
+
 
     private void Update()
     {
@@ -101,12 +110,49 @@ public class PlayerShip : MonoBehaviour, IDamageable
                 break;
         }
     }
+    
+    // ReSharper disable once UnusedMember.Global
+    public void Shield(InputAction.CallbackContext context)
+    {
+        if(!_isShieldOnCooldown)
+        {
+            Debug.Log("Shields go up");
+             if (context.phase == InputActionPhase.Started)
+             {
+                 _isShielded = true;
+                 _isShieldOnCooldown = true;
+                 StartCoroutine(RaiseShields());
+                 StartCoroutine(ShieldCooldown());
+             }
+        }
+    }
+
+    private IEnumerator ShieldCooldown()
+    {
+        yield return new WaitForSeconds(shieldCooldown);
+        Debug.Log("Shields ready to go!");
+        _isShieldOnCooldown = false;
+    }
+
+    private IEnumerator RaiseShields()
+    {
+        yield return new WaitForSeconds(shieldUptime);
+        Debug.Log("Shields go down");
+        _isShielded = false;
+    }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log($"Player HP left: {HP}");
-        HP -= damage;
-        if (HP <= 0) Die();
+        if(!_isShielded)
+            {
+            Debug.Log($"Player HP left: {HP}");
+            HP -= damage;
+            if (HP <= 0) Die();
+        }
+        else
+        {
+            Debug.Log($"Hit mitigated!");
+        }
     }
 
     private void Die()

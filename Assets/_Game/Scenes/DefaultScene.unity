@@ -862,6 +862,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b9dbc867-8785-4bb8-bde6-91ef8b0937c4
     m_ActionName: Flying/Lock[/Keyboard/leftCtrl,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1382232445}
+        m_TargetAssemblyTypeName: PlayerShip, Assembly-CSharp
+        m_MethodName: Shield
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bb55912a-ff41-4e3d-9e8e-6b904fb35f6e
+    m_ActionName: Flying/Shield[/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder,/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Flying
@@ -1399,6 +1415,8 @@ MonoBehaviour:
   - {fileID: 870842062}
   - {fileID: 1181036968}
   - {fileID: 1648869995}
+  shieldUptime: 2
+  shieldCooldown: 5
 --- !u!54 &1382232446
 Rigidbody:
   m_ObjectHideFlags: 0
