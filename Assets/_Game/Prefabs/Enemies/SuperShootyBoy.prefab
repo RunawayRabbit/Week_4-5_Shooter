@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2084192124047041929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116855, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750883737116875, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: m_Name
+      value: SuperShootyBoy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135750884426380978, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}
+      propertyPath: startingWeapon
+      value: 
+      objectReference: {fileID: 8424891452711112090, guid: 0cfb2f8e17fb665488dd2b82b8417d0d, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 220e9ddbd2291a342b1d2a70eb611c9c, type: 3}

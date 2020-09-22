@@ -24,9 +24,8 @@ public abstract class Weapon : MonoBehaviour
         if (_isShooting) StopShooting();
     }
 
-    public void Decomission()
+    public virtual void Decomission()
     {
-        Debug.Log("Weapon is being decomissioned");
         Destroy(gameObject);
     }
 }
