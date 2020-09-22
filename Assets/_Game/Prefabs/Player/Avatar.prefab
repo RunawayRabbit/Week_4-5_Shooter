@@ -411,6 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38717f2adbed92b42886b5f71cf8d424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shield: {fileID: 5789112564424602733}
   shieldUptime: 5
   shieldCooldown: 20
 --- !u!1 &2840089836531131918

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
+  m_Name: Reflector
   m_Shader: {fileID: -6465566751694194690, guid: 325fae6e2ba2de54d85e1ab6462e8cba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,12 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_528C8AC7: 16.6
-    - Vector1_896C30AE: 0.96
-    - Vector1_F2A5A975: 0.05
-    - Vector1_F681DA6B: 91.73
+    - Vector1_528C8AC7: -0.34
+    - Vector1_896C30AE: 0.83
+    - Vector1_F2A5A975: 0
+    - Vector1_F681DA6B: 2.46
     m_Colors:
-    - Color_350A539F: {r: 0.0744927, g: 0.47161302, b: 0.509434, a: 0}
-    - Color_994AD412: {r: 0.12820399, g: 0.6320754, b: 0.45520535, a: 0}
-    - Vector2_7A639B23: {r: 1.14, g: 0, b: 0, a: 0}
+    - Color_350A539F: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0}
+    - Color_994AD412: {r: 1.3041189, g: 1.3041189, b: 1.3041189, a: 0}
+    - Vector2_7A639B23: {r: 0.22, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

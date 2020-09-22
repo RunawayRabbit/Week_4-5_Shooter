@@ -4,20 +4,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerShields : MonoBehaviour
 {
-    [SerializeField] private float shieldUptime = 5.0f;
-    [SerializeField] private float shieldCooldown = 20.0f;
-    public bool AreShieldsUp { get; private set; }
     private bool _isShieldOnCooldown;
-    
-    private void OnDisable() => StopAllCoroutines();
-    
+    [SerializeField] private GameObject shield;
+    [SerializeField] private float shieldCooldown = 20.0f;
+    [SerializeField] private float shieldUptime = 5.0f;
+    public bool AreShieldsUp { get; private set; }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     public void Shield(InputAction.CallbackContext context)
     {
-        if(!_isShieldOnCooldown)
+        if (!_isShieldOnCooldown)
         {
             Debug.Log("Shields go up");
             if (context.phase == InputActionPhase.Started)
             {
+                shield.SetActive(true);
                 AreShieldsUp = true;
                 _isShieldOnCooldown = true;
                 StartCoroutine(RaiseShields());
@@ -36,7 +41,7 @@ public class PlayerShields : MonoBehaviour
     private IEnumerator RaiseShields()
     {
         yield return new WaitForSeconds(shieldUptime);
-        Debug.Log("Shields go down");
+        shield.SetActive(false);
         AreShieldsUp = false;
     }
 }
