@@ -29,11 +29,13 @@
               <e p="Enemy.cs" t="Include" />
               <e p="ShootyBoy.cs" t="Include" />
               <e p="WaveSpawner.cs" t="Include" />
+              <e p="ZoomyBoy.cs" t="Include" />
             </e>
             <e p="IDamageable.cs" t="Include" />
             <e p="Mover" t="Include">
               <e p="BasicMover.cs" t="Include" />
               <e p="IMover.cs" t="Include" />
+              <e p="RammingMover.cs" t="Include" />
               <e p="SplineFollower.cs" t="Include" />
             </e>
             <e p="Player" t="Include">

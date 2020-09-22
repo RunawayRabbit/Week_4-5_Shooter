@@ -19,7 +19,7 @@ public class RotatingWeaponSlot : WeaponSlot
 
     private void OnDrawGizmosSelected()
     {
-        Handles.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+        Handles.color = new Color(1.0f, 0.2f, 0.2f, 0.2f);
         Handles.DrawSolidDisc(transform.position, Vector3.up, shootRadius);
     }
 
