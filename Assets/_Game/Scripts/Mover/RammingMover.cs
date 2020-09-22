@@ -27,7 +27,8 @@ public class RammingMover : MonoBehaviour, IMover
         {
             case State.Patrolling:
                 delta = _patrolMover.Move();
-                transform.rotation = Quaternion.LookRotation(delta, Vector3.up);
+                if (delta.sqrMagnitude > 0.1f)
+                    transform.rotation = Quaternion.LookRotation(delta, Vector3.up);
 
                 if (facingVectorToTarget.sqrMagnitude < _freezeAndChargeRangeSq)
                 {
